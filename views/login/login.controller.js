@@ -18,11 +18,11 @@
         })();
 
         function login2(){
-            alert('here');
+
         }
 
         function login() {
-
+            alert('here');
             vm.dataLoading = true;
             AuthenticationService.Login(vm.USER_NAME, vm.PASSWORD, function (response) {
 
