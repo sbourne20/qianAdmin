@@ -22,7 +22,7 @@
         }
 
         function login() {
-            alert('here');
+            alert('herexxx');
             vm.dataLoading = true;
             AuthenticationService.Login(vm.USER_NAME, vm.PASSWORD, function (response) {
 
