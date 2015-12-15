@@ -16,7 +16,7 @@
         return service;
 
         function Login(username, password, callback) {
-            alert('masukddd');
+
 
             var request = $http({
                 method: 'POST',
@@ -56,13 +56,14 @@
 
             });
 
-            /*
+
+
              request.error(function(err){
 
-             $location.path('#/404.html');
+                alert (err);
 
              });
-             */
+
 
 
         }
