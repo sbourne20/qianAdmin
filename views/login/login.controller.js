@@ -10,11 +10,16 @@
         var vm = this;
 
         vm.login = login;
+        vm.login2 = login2;
 
         (function initController() {
             // reset login status
             AuthenticationService.ClearCredentials();
         })();
+
+        function login2(){
+            alert('here');
+        }
 
         function login() {
 
