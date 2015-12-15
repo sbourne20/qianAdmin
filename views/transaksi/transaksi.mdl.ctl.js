@@ -21,26 +21,39 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
 
 
     $scope.addNasabData = function () {
+
         var elem = document.getElementById("fileinput-prev");
         var f = document.getElementById('file').files[0],
             r = new FileReader();
+        if (f!==null) {
+            r.onloadend = function (e) {
+                if (e.target.result !== null) {
+                    $scope.nasabah.idcopy = e.target.result;
+                    transaksiService.addedit('POSTNASAB', 0, $scope.nasabah)
+                        .then(function (result) {
 
-        r.onloadend = function(e) {
-            if (e.target.result !== null) {
-                $scope.nasabah.idcopy = e.target.result;
-                transaksiService.addedit('POSTNASAB', 0, $scope.nasabah)
-                    .then(function (result) {
-
-                        $scope.nasabah.id = result.data.record[0].id;
-                        $scope.disableForm = true;
-                        $scope.disableButtonTRX = false;
-                        $scope.trxh.nama = $scope.nasabah.nama;
-                        $scope.trxh.trxh_nasab_id = $scope.nasabah.id;
-                        $scope.trxh.idnasabah = $scope.nasabah.id;
-                    });
+                            $scope.nasabah.id = result.data.record[0].id;
+                            $scope.disableForm = true;
+                            $scope.disableButtonTRX = false;
+                            $scope.trxh.nama = $scope.nasabah.nama;
+                            $scope.trxh.trxh_nasab_id = $scope.nasabah.id;
+                            $scope.trxh.idnasabah = $scope.nasabah.id;
+                        });
+                }
             }
+            r.readAsBinaryString(f);
+        } else {
+            transaksiService.addedit('POSTNASAB', 0, $scope.nasabah)
+                .then(function (result) {
+
+                    $scope.nasabah.id = result.data.record[0].id;
+                    $scope.disableForm = true;
+                    $scope.disableButtonTRX = false;
+                    $scope.trxh.nama = $scope.nasabah.nama;
+                    $scope.trxh.trxh_nasab_id = $scope.nasabah.id;
+                    $scope.trxh.idnasabah = $scope.nasabah.id;
+                });
         }
-        r.readAsBinaryString(f);
     }
 
 
@@ -78,7 +91,7 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
     }
 
     $scope.refreshDataTrxd = function(){
-       setTimeout(function () {
+        setTimeout(function () {
             $('#jqxgridDetil').jqxGrid('updatebounddata')
         }, 500);
 
@@ -142,44 +155,44 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
                     },
                     {
                         text: 'Stok', datafield: 'trxd_stok_id', width: 80, columntype: 'button', cellsrenderer: function () {
-                            return "Cari Stok";
-                        }, buttonclick: function (row) {
+                        return "Cari Stok";
+                    }, buttonclick: function (row) {
 
 
-                            var valueId = $('#jqxgridDetil').jqxGrid('getcellvalue', row, 'trxd_currency_id');
-                            $('.nav-tabs a[href="#tab_2_2"]').tab('show');
+                        var valueId = $('#jqxgridDetil').jqxGrid('getcellvalue', row, 'trxd_currency_id');
+                        $('.nav-tabs a[href="#tab_2_2"]').tab('show');
 
-                            var sourceStok =
+                        var sourceStok =
+                        {
+                            datatype: "json",
+                            datafields: [
+                                { name: 'id' },
+                                { name: 'pecahan_id' },
+                                { name: 'qty' },
+                                { name: 'pecahan', type: 'INT' },
+                                { name: 'curname' }
+
+                            ],
+                            localdata: getPecahanTRX(valueId,0,$scope.pecahan)
+                        };
+                        var stokDA = new $.jqx.dataAdapter(sourceStok);
+
+                        $("#jqxgridStok").jqxGrid(
                             {
-                                datatype: "json",
-                                datafields: [
-                                    { name: 'id' },
-                                    { name: 'pecahan_id' },
-                                    { name: 'qty' },
-                                    { name: 'pecahan', type: 'INT' },
-                                    { name: 'curname' }
+                                width: "100%",
+                                //source: stokService.initData(valueId),
+                                source: stokDA,
+                                columnsresize: true,
+                                editable: false,
+                                selectionmode: 'singlerow',
+                                columns: [
+                                    { text: 'Mata Uang', displayfield: 'curname',width: 100,editable:false},
+                                    { text: 'Pecahan', displayfield: 'pecahan',width: 100,editable:false},
+                                    { text: 'QTY', displayfield: 'qty',width: 100,editable:false}
+                                ]
+                            });
 
-                                ],
-                                localdata: getPecahanTRX(valueId,0,$scope.pecahan)
-                            };
-                            var stokDA = new $.jqx.dataAdapter(sourceStok);
-
-                            $("#jqxgridStok").jqxGrid(
-                                {
-                                    width: "100%",
-                                    //source: stokService.initData(valueId),
-                                    source: stokDA,
-                                    columnsresize: true,
-                                    editable: false,
-                                    selectionmode: 'singlerow',
-                                    columns: [
-                                        { text: 'Mata Uang', displayfield: 'curname',width: 100,editable:false},
-                                        { text: 'Pecahan', displayfield: 'pecahan',width: 100,editable:false},
-                                        { text: 'QTY', displayfield: 'qty',width: 100,editable:false}
-                                    ]
-                                });
-
-                        }
+                    }
                     },
                     { text: 'Pecahan', displayfield: 'pecahan',width: 100,cellsformat: 'd', cellsalign: 'right',editable:false},
                     { text: 'PecahanID', hidden: 'true', displayfield: 'pecahanID',width: 100,cellsformat: 'd', cellsalign: 'right',editable:false},
@@ -239,8 +252,8 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
         $("#jqxgridDetil").jqxGrid('setcellvalue', rowindexTrxd, "trxd_jumlah", 0);
         $("#jqxgridDetil").jqxGrid('setcellvalue', rowindexTrxd, "trxd_total", 0);
         /*$scope.trxh.trxh_amount = 0;
-        $scope.trxh.trxh_kembali = 0;
-        $scope.trxh.trxh_total = 0;*/
+         $scope.trxh.trxh_kembali = 0;
+         $scope.trxh.trxh_total = 0;*/
 
         $('.nav-tabs a[href="#tab_2_1"]').tab('show');
 
@@ -353,9 +366,9 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
 
     $scope.changeJumlah = function(){
         if ($scope.trxh.trxh_tipe=="Jual")
-          $scope.trxh.trxh_kembali= $scope.trxh.trxh_amount - $scope.trxh.trxh_total;
+            $scope.trxh.trxh_kembali= $scope.trxh.trxh_amount - $scope.trxh.trxh_total;
         else
-          $scope.trxh.trxh_kembali = 0;
+            $scope.trxh.trxh_kembali = 0;
 
     }
 
@@ -383,11 +396,11 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
             .then (function(result) {
             transaksiService.postTRXH($scope.trxh.id)
                 .then(function (result) {
-                $modalInstance.dismiss();
-                setTimeout(function () {
-                    $('#jqxgrid').jqxGrid('updatebounddata');
-                }, 500);
-            });
+                    $modalInstance.dismiss();
+                    setTimeout(function () {
+                        $('#jqxgrid').jqxGrid('updatebounddata');
+                    }, 500);
+                });
         });
 
     }
@@ -416,6 +429,16 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
 
     }
 
+    $scope.$on('handleBroadcast', function() {
+        /*var elem = document.getElementById("fileinput-prev");
+
+         var DOM_img = document.createElement("img");
+         DOM_img.src = "assets/img/contactus2.png";
+
+         elem.appendChild(DOM_img);*/
+
+
+    });
 
 
 }
