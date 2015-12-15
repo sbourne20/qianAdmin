@@ -16,7 +16,7 @@
         return service;
 
         function Login(username, password, callback) {
-
+            alert('masuk');
 
             var request = $http({
                 method: 'POST',
