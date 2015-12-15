@@ -22,10 +22,10 @@
         }
 
         function login() {
-            alert('herexxx');
+
             vm.dataLoading = true;
             AuthenticationService.Login(vm.USER_NAME, vm.PASSWORD, function (response) {
-
+                alert('masuk');
                 if (response.success) {
                     AuthenticationService.SetCredentials(vm.USER_NAME, vm.PASSWORD);
                     $location.path('/home/dashboard');
