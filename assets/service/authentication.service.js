@@ -62,7 +62,7 @@
 
              request.error(function(err){
 
-                console.log (err);
+                alert ('error');
 
              });
 
