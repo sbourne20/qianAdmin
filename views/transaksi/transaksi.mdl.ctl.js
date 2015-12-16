@@ -25,7 +25,8 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
         var elem = document.getElementById("fileinput-prev");
         var f = document.getElementById('file').files[0],
             r = new FileReader();
-        if (f!==null) {
+
+        if (typeof f!=='undefined') {
             r.onloadend = function (e) {
                 if (e.target.result !== null) {
                     $scope.nasabah.idcopy = e.target.result;
@@ -338,7 +339,8 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
     }
 
     $scope.onBlur = function(ev){
-
+        var elem = document.getElementById("IMGidcopy");
+        if (elem!==null) elem.remove();
         transaksiService.fetchNasab($scope.nasabah.idnasabah)
             .then(function (result) {
 
@@ -355,8 +357,7 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
                     };
                     $scope.disableForm = false;
                     $scope.disableButtonTRX = true;
-                    var elem = document.getElementById("IMGidcopy");
-                    if (elem!==null) elem.remove();
+
                     $scope.nasabah.resultbox = "Pencarian tidak ditemukan, Segera isi data."
                 }
             });

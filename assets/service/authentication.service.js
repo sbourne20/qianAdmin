@@ -9,6 +9,8 @@
     function AuthenticationService($http,$location, $cookieStore, $rootScope, $timeout,DREAM_FACTORY_URL) {
         var service = {};
 
+
+
         service.Login = Login;
         service.ClearCredentials = ClearCredentials;
         service.SetCredentials = SetCredentials;
@@ -17,7 +19,7 @@
 
         function Login(username, password, callback) {
 
-
+            $http.defaults.headers.common.Authorization = 'Basic ';
             var request = $http({
                 method: 'POST',
                 url: DREAM_FACTORY_URL + '/rest/qian/_func/fetchBottle',
@@ -60,7 +62,7 @@
 
              request.error(function(err){
 
-                alert (err);
+                console.log (err);
 
              });
 

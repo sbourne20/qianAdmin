@@ -19,8 +19,6 @@
         $scope.test = "test";
 
         var trxhdata = {};
-
-
         initController();
 
         function getTRXH(trxhid, data) {
@@ -127,9 +125,11 @@
             $('#jqxgrid').jqxGrid('updatebounddata');
         }
 
+
+
         $scope.addData = function(){
             //$scope.showModal = !$scope.showModal;
-            var modalInstance = $modal.open({
+           var modalInstance = $modal.open({
                 templateUrl: './views/transaksi/transaksi.mdl.html',
                 windowClass: 'app-modal-window',
                 controller: "transaksiWinController",
@@ -143,6 +143,9 @@
 
                 }
             });
+
+
+
 
 
 
