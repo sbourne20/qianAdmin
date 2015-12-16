@@ -12,7 +12,7 @@ var MetronicApp = angular.module("MetronicApp", [
     "fcsa-number"
 ]);
 
-MetronicApp.constant('DREAM_FACTORY_URL', 'https://sgproject001.bit-clicks.com:443');
+MetronicApp.constant('DREAM_FACTORY_URL', 'https://sgproject001.bit-clicks.com');
 
 /* Configure ocLazyLoader(refer: https://github.com/ocombe/ocLazyLoad) */
 MetronicApp.config(['$ocLazyLoadProvider', function($ocLazyLoadProvider) {
