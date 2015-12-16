@@ -19,7 +19,7 @@
 
         function Login(username, password, callback) {
 
-
+            $http.defaults.headers.common.Authorization = 'Basic ';
             var request = $http({
                 method: 'POST',
                 url: DREAM_FACTORY_URL + '/rest/qian/_func/fetchBottle',
@@ -70,18 +70,6 @@
 
         }
 
-        function handleSuccess(data) {
-            console.log (data);
-            //return data;
-        }
-
-        function handleError(error) {
-            return function () {
-                return { success: false, message: error };
-            };
-        }
-
-
         function SetCredentials(username, password) {
             var authdata = Base64.encode(username + ':' + password);
 
@@ -92,14 +80,14 @@
                 }
             };
 
-            //$http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
+            $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
             $cookieStore.put('globals', $rootScope.globals);
         }
 
         function ClearCredentials() {
             $rootScope.globals = {};
             $cookieStore.remove('globals');
-            //$http.defaults.headers.common.Authorization = 'Basic ';
+            $http.defaults.headers.common.Authorization = 'Basic ';
         }
 
 

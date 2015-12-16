@@ -699,7 +699,8 @@ Page Header
   border: 0;
   padding: 0;
   box-shadow: none;
-  height: 126px;
+  /*height: 126px;*/
+  height: 150px;
   background-image: none;
   /* Header container */
   /* Fixed header */

@@ -232,8 +232,8 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
 /* Init global settings and run the app */
 MetronicApp.run(["$rootScope", "settings", "$state", "$location","$cookieStore","$http","$stateParams",
     function($rootScope, settings, $state, $location,$cookieStore,$http,$stateParams) {
-    $rootScope.$state = $state; // state to be accessed from view
 
+    $rootScope.$state = $state; // state to be accessed from view
     $rootScope.$stateParams = $stateParams;
 
     // keep user logged in after page refresh
@@ -251,5 +251,6 @@ MetronicApp.run(["$rootScope", "settings", "$state", "$location","$cookieStore",
             $location.path('/login');
         }
     });
+
 
 }]);
