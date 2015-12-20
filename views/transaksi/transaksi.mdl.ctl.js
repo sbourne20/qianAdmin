@@ -327,6 +327,7 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
                         $scope.trxh.nama = $scope.nasabah.nama;
                         $scope.trxh.trxh_nasab_id = $scope.nasabah.id;
                         $scope.disableButtonTRX = true;
+                        $scope.disabledTerimaSerah=false;
                         prepareDetilTransaksi();
                     });
             }
@@ -395,13 +396,35 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
     $scope.post = function() {
         transaksiService.saveTrxh($scope.trxh)
             .then (function(result) {
-            transaksiService.postTRXH($scope.trxh.id)
-                .then(function (result) {
-                    $modalInstance.dismiss();
-                    setTimeout(function () {
-                        $('#jqxgrid').jqxGrid('updatebounddata');
-                    }, 500);
-                });
+            setTimeout(function () {
+                transaksiService.postTRXH($scope.trxh.id)
+                    .then(function (result) {
+
+                        if (result.data.record!='DONE') {
+                            setTimeout(function () {
+                                $window.$scope = $scope;
+                                var
+                                    left = screen.width / 2 - 400
+                                    , top = screen.height / 2 - 250
+                                    , popup = $window.open('#ptransaksi?hid=' + $scope.trxh.id, '', "top=" + top + ",left=" + left + ",width=1000,height=500");
+
+                                popup.onbeforeunload = function(){
+                                    setTimeout(function () {
+                                        $modalInstance.dismiss();
+                                        $('#jqxgrid').jqxGrid('updatebounddata');
+                                    }, 500);
+                                }
+
+                            }, 500);
+                        } else {
+                            $modalInstance.dismiss();
+                            setTimeout(function () {
+                                $('#jqxgrid').jqxGrid('updatebounddata');
+                            }, 500);
+                        }
+
+                    });
+            }, 500);
         });
 
     }
@@ -413,11 +436,10 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
             var //left = screen.width/2 - 400
                 left = screen.width/2 - 400
                 , top = screen.height / 2 - 250
-                , popup = $window.open('#ptransaksi?hid=' + $scope.trxh.id, '', "top=" + top + ",left=" + left + ",width=1000,height=500")
+                , popup = $window.open('#ptransaksi?hid=' + $scope.trxh.id, 'MyWindow', "top=" + top + ",left=" + left + ",width=1000,height=500")
                 , interval = 1000;
 
         });
-
 
     }
 
@@ -430,16 +452,6 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
 
     }
 
-    $scope.$on('handleBroadcast', function() {
-        /*var elem = document.getElementById("fileinput-prev");
-
-         var DOM_img = document.createElement("img");
-         DOM_img.src = "assets/img/contactus2.png";
-
-         elem.appendChild(DOM_img);*/
-
-
-    });
 
 
 }

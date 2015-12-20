@@ -17,7 +17,10 @@
                 transaksiService.fetchTRXH('TRXHTRXD',trxhid)
                     .then(function(result){
                       $scope.trx = result.data.record;
-                        //$window.print();
+                        setTimeout(function () {
+                            window.print();
+                            window.close();
+                        },1000);
             });
         }
 

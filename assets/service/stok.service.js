@@ -21,7 +21,7 @@
             var url = "";
             var data = {};
 
-            url = DREAM_FACTORY_URL + '/rest/qian/akun?ids='+uid;
+            url = DREAM_FACTORY_URL + '/akun?ids='+uid;
             data = {
 
                 "record": [
@@ -58,7 +58,7 @@
 
             if (aemethod == 'POST') {
                 var data = {};
-                url = DREAM_FACTORY_URL + '/rest/qian/akun'
+                url = DREAM_FACTORY_URL + '/akun'
                 data = {
                     "record": [
                         {
@@ -70,7 +70,7 @@
             else
             {
 
-                url = DREAM_FACTORY_URL + '/rest/qian/akun?ids='+rowdata.uid;
+                url = DREAM_FACTORY_URL + '/akun?ids='+rowdata.uid;
                 data = {
 
                     "record": [
@@ -131,13 +131,14 @@
                 datafields: [
                     { name: 'id' },
                     { name: 'pecahan_id' },
-                    { name: 'qty' },
-                    { name: 'pecahan' },
-                    { name: 'curname' }
+                    { name: 'qty' , type:'int'},
+                    { name: 'pecahan', type:'int' },
+                    { name: 'curname' },
+                    { name: 'jumlahlembar', type:'int' },
 
                 ],
                 id: 'id',
-                url: DREAM_FACTORY_URL+ "/rest/qian/_proc/fetchStok",
+                url: DREAM_FACTORY_URL+ "/_proc/fetchStok",
                 root: 'record',
                 updaterow: function (rowid, rowdata, commit) {
 
@@ -177,7 +178,7 @@
                 };
 
 
-            var url =  DREAM_FACTORY_URL+ "/rest/qian/_proc/fetchStok";
+            var url =  DREAM_FACTORY_URL+ "/_proc/fetchStok";
 
             return $http({
                 method: "POST",

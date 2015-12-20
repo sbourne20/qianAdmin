@@ -18,7 +18,7 @@
 
             return  $http({
                 method: 'Get',
-                url: DREAM_FACTORY_URL + '/rest/qian/rules?order=tanggal',
+                url: DREAM_FACTORY_URL + '/rules?order=tanggal',
                 headers: {
                     'X-DreamFactory-Application-Name': "myapp"
                 },

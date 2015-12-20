@@ -22,7 +22,7 @@
             var url = "";
             var data = {};
 
-            url = DREAM_FACTORY_URL + '/rest/qian/currency?ids='+uid;
+            url = DREAM_FACTORY_URL + '/currency?ids='+uid;
             data = {
 
                 "record": [
@@ -58,7 +58,7 @@
 
             if (rowid==0) {
 
-                url = DREAM_FACTORY_URL + '/rest/qian/currency';
+                url = DREAM_FACTORY_URL + '/currency';
                 data = {
                     "record": [
                         {
@@ -74,7 +74,7 @@
                     "wrapper": "record"
                 }
             } else {
-                url = DREAM_FACTORY_URL + '/rest/qian/currency?ids='+rowdata.uid;
+                url = DREAM_FACTORY_URL + '/currency?ids='+rowdata.uid;
                 data = {
 
                     "record": [
@@ -121,7 +121,7 @@
 
                 ],
                 id: 'id',
-                url: DREAM_FACTORY_URL+ "/rest/qian/currency?filter=nstatus%3D'ACTIVE'&order=curname",
+                url: DREAM_FACTORY_URL+ "/currency?filter=nstatus%3D'ACTIVE'&order=curname",
                 root: 'record',
 
                 updaterow: function (rowid, rowdata, commit) {

@@ -9,7 +9,6 @@
 
     function rateService($http, DREAM_FACTORY_URL) {
         var service = {};
-        $http.defaults.headers.common['X-DreamFactory-Application-Name'] = 'MetronicApp'; //default header for X-DreamFactory-Application-Name
 
         service.initData = initData;
         service.addedit = addedit;
@@ -25,7 +24,7 @@
             var url = "";
             var data = {};
 
-            url = DREAM_FACTORY_URL + '/rest/qian/currency?ids='+uid;
+            url = DREAM_FACTORY_URL + '/currency?ids='+uid;
             data = {
 
                 "record": [
@@ -59,7 +58,7 @@
             var url = "";
             var data = {};
 
-            url = DREAM_FACTORY_URL + '/rest/qian/_proc/publishRate'
+            url = DREAM_FACTORY_URL + '/_proc/publishRate'
             data = {
                     "schema": {
                         "STATUS": "varchar",
@@ -86,7 +85,7 @@
 
             if (aemethod == 'POST') {
                 var data = {};
-                url = DREAM_FACTORY_URL + '/rest/qian/_proc/insert_currency'
+                url = DREAM_FACTORY_URL + '/_proc/insert_currency'
                 data = {
                     "schema": {
                         "STATUS": "varchar",
@@ -98,7 +97,7 @@
             else
             {
                 //console.log (rowdata);
-                url = DREAM_FACTORY_URL + '/rest/qian/rates?ids='+rowdata.nid;
+                url = DREAM_FACTORY_URL + '/rates?ids='+rowdata.nid;
                 data = {
 
                     "record": [
@@ -171,7 +170,7 @@
 
                     ],
                     id: 'id',
-                    url: DREAM_FACTORY_URL + "/rest/qian/_proc/fetchRates",
+                    url: DREAM_FACTORY_URL + "/_proc/fetchRates",
                     root: 'record',
                     updaterow: function (rowid, rowdata, commit) {
                         //console.log ("haha " + rowdata.uid);
@@ -191,7 +190,7 @@
 
                 return dataAdapter;
             } else if (jenis="xa2"){
-                var url = DREAM_FACTORY_URL + "/rest/qian/_proc/fetchRates";
+                var url = DREAM_FACTORY_URL + "/_proc/fetchRates";
                 var data = {
                     "params": [
                         {
@@ -227,7 +226,7 @@
 
                 }).then(handleSuccess, handleError('Error updating data'));
             } else {
-                var url = DREAM_FACTORY_URL + "/rest/qian/_proc/fetchRates";
+                var url = DREAM_FACTORY_URL + "/_proc/fetchRates";
                 var data = {
                         "params": [
                             {
@@ -268,7 +267,7 @@
 
         function fetchTRXRate2(){
 
-                var url = DREAM_FACTORY_URL + "/rest/qian/_proc/fetchRates";
+                var url = DREAM_FACTORY_URL + "/_proc/fetchRates";
                 var data = {
                     "params": [
                         {
@@ -308,7 +307,7 @@
 
         function fetchTRXRateJB(jenis,curid){
 
-                var url = DREAM_FACTORY_URL + "/rest/qian/_proc/fetchRates";
+                var url = DREAM_FACTORY_URL + "/_proc/fetchRates";
                 var data = {
                     "params": [
                         {
@@ -387,7 +386,7 @@
 
                 ],
                 id: 'id',
-                url: DREAM_FACTORY_URL+ "/rest/qian/_proc/retrieveAdminRates",
+                url: DREAM_FACTORY_URL+ "/_proc/retrieveAdminRates",
                 root: 'record',
                 updaterow: function (rowid, rowdata, commit) {
                     //console.log ("haha " + rowdata.uid);

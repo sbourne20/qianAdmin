@@ -22,7 +22,7 @@
             var url = "";
             var data = {};
 
-            url = DREAM_FACTORY_URL + '/rest/qian/akun?ids='+uid;
+            url = DREAM_FACTORY_URL + '/akun?ids='+uid;
             data = {
 
                 "record": [
@@ -59,7 +59,7 @@
 
             if (aemethod == 'POST') {
                 var data = {};
-                url = DREAM_FACTORY_URL + '/rest/qian/akun'
+                url = DREAM_FACTORY_URL + '/akun'
                 data = {
                     "record": [
                         {
@@ -71,7 +71,7 @@
             else
             {
 
-                url = DREAM_FACTORY_URL + '/rest/qian/akun?ids='+rowdata.uid;
+                url = DREAM_FACTORY_URL + '/akun?ids='+rowdata.uid;
                 data = {
 
                     "record": [
@@ -125,7 +125,7 @@
 
                 ],
                 id: 'id',
-                url: DREAM_FACTORY_URL+ "/rest/qian/akun?filter=stats%3D'ACTIVE'&order=akun_code",
+                url: DREAM_FACTORY_URL+ "/akun?filter=stats%3D'ACTIVE'&order=akun_code",
                 root: 'record',
                 updaterow: function (rowid, rowdata, commit) {
 

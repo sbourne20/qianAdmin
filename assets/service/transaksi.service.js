@@ -9,6 +9,7 @@
 
     function transaksiService($http, DREAM_FACTORY_URL, $rootScope) {
         var service = {};
+        var status_owp = false;
         $http.defaults.headers.common['X-DreamFactory-Application-Name'] = 'MetronicApp'; //default header for X-DreamFactory-Application-Name
 
         service.initData = initData;
@@ -20,13 +21,21 @@
         service.saveTrxh = saveTrxh;
         service.fetchTRXH = fetchTRXH;
         service.postTRXH = postTRXH;
+        service.openWindowPopup = openWindowPopup;
         return service;
+
+        function openWindowPopup(sowp){
+            if (sowp!=null)
+                status_owp = sowp;
+
+            return status_owp;
+        }
 
         function changeJenis (trhid, jenis){
             var url = "";
             var data = {};
 
-            url = DREAM_FACTORY_URL + '/rest/qian/_func/changeTRXJenis',
+            url = DREAM_FACTORY_URL + '/_func/changeTRXJenis',
                 data = {
                     "params": [
                         {
@@ -66,7 +75,7 @@
             var url = "";
 
 
-            url = DREAM_FACTORY_URL + '/rest/qian/trxd/'+uid;
+            url = DREAM_FACTORY_URL + '/trxd/'+uid;
 
 
             return  $http({
@@ -83,7 +92,7 @@
             var url = "";
             var data = {};
 
-            url = DREAM_FACTORY_URL + '/rest/qian/_proc/fetchNasabah'
+            url = DREAM_FACTORY_URL + '/_proc/fetchNasabah'
             data = {
                 "params": [
                     {
@@ -112,7 +121,7 @@
         }
 
         function saveTrxh(trxh){
-            var url = DREAM_FACTORY_URL + '/rest/qian/trxh?ids='+trxh.id;
+            var url = DREAM_FACTORY_URL + '/trxh?ids='+trxh.id;
             var x = {
                 a : "aa",
                 b : "bb"
@@ -159,7 +168,7 @@
             var url = "";
             var data = {};
 
-            url = DREAM_FACTORY_URL + '/rest/qian/_proc/insertTrxhTrxd?wrapper=record',
+            url = DREAM_FACTORY_URL + '/_proc/insertTrxhTrxd?wrapper=record',
             data = {
                 "params": [
                     {
@@ -196,7 +205,7 @@
 
             if (aemethod == 'POST') {
                 pMethod = "POST"
-                url = DREAM_FACTORY_URL + '/rest/qian/trxd'
+                url = DREAM_FACTORY_URL + '/trxd'
                 data = {
                     "record": [{
                         "trxd_trxh_id" : rowid,
@@ -208,7 +217,7 @@
             }
             else if (aemethod == 'POSTNASAB') {
                 pMethod = "POST"
-                url = DREAM_FACTORY_URL + '/rest/qian/nasab'
+                url = DREAM_FACTORY_URL + '/nasab'
                 data = {
                     "record": rowdata
                 };
@@ -217,7 +226,7 @@
             {
 
                 pMethod = aemethod;
-                url = DREAM_FACTORY_URL + '/rest/qian/trxd?ids='+rowdata.uid;
+                url = DREAM_FACTORY_URL + '/trxd?ids='+rowdata.uid;
                 data = {
 
                     "record":
@@ -247,7 +256,7 @@
         }
 
         function postTRXH(idtrxh){
-            var url = DREAM_FACTORY_URL + "/rest/qian/_func/postTRX?wrapper=record";
+            var url = DREAM_FACTORY_URL + "/_func/postTRX?wrapper=record";
             var data = {
                 "params": [
                     {
@@ -261,7 +270,8 @@
                     "ERROR_CODE": "varchar",
                     "MESSAGE": "varchar"
                 },
-                "wrapper": "record"
+                "wrapper": "record",
+                "returns": "record"
             };
 
             return $http({
@@ -278,7 +288,7 @@
 
 
         function fetchTRXH(stats,idtrxh){
-            var url = DREAM_FACTORY_URL + "/rest/qian/_proc/fetchTrxh?wrapper=record";
+            var url = DREAM_FACTORY_URL + "/_proc/fetchTrxh?wrapper=record";
             var data = {
                     "params": [
                         {
@@ -354,7 +364,7 @@
 
                 ],
                 id: 'id',
-                url: DREAM_FACTORY_URL + "/rest/qian/_proc/fetchTrxh?wrapper=record",
+                url: DREAM_FACTORY_URL + "/_proc/fetchTrxh?wrapper=record",
                 root: 'record'
             };
 
@@ -393,7 +403,7 @@
 
                 ],
                 id: 'id',
-                url: DREAM_FACTORY_URL + "/rest/qian/_proc/fetchTrxd?wrapper=record",
+                url: DREAM_FACTORY_URL + "/_proc/fetchTrxd?wrapper=record",
                 root: 'record',
                 updaterow: function (rowid, rowdata, commit) {
                     if (addedit('PATCH', rowid, rowdata))

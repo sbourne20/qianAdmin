@@ -9,7 +9,6 @@
 
     function pecahanService($http, DREAM_FACTORY_URL,rateService) {
         var service = {};
-        $http.defaults.headers.common['X-DreamFactory-Application-Name'] = 'MetronicApp'; //default header for X-DreamFactory-Application-Name
 
         service.initData = initData;
         service.addedit = addedit;
@@ -23,7 +22,7 @@
             var url = "";
             var data = {};
 
-            url = DREAM_FACTORY_URL + '/rest/qian/pecahan?ids='+uid;
+            url = DREAM_FACTORY_URL + '/pecahan?ids='+uid;
             data = {
 
                 "record": [
@@ -60,7 +59,7 @@
 
             if (aemethod == 'POST') {
                 var data = {};
-                url = DREAM_FACTORY_URL + '/rest/qian/_func/insertPecahan',
+                url = DREAM_FACTORY_URL + '/_func/insertPecahan',
                     data = {
                         "schema": {
                             "STATUS": "varchar",
@@ -73,7 +72,7 @@
             else
             {
                 //console.log (rowdata);
-                url = DREAM_FACTORY_URL + '/rest/qian/pecahan?ids='+rowdata.id;
+                url = DREAM_FACTORY_URL + '/pecahan?ids='+rowdata.id;
                 data = {
 
                     "record": [
@@ -138,7 +137,7 @@
 
                     ],
                     id: 'id',
-                    url: DREAM_FACTORY_URL+ "/rest/qian/_proc/fetchPecahan",
+                    url: DREAM_FACTORY_URL+ "/_proc/fetchPecahan",
                     root: 'record',
                     updaterow: function (rowid, rowdata, commit) {
 
@@ -177,7 +176,7 @@
 
                     ],
                     id: 'id',
-                    url: DREAM_FACTORY_URL+ "/rest/qian/_proc/fetchPecahan",
+                    url: DREAM_FACTORY_URL+ "/_proc/fetchPecahan",
                     root: 'record',
                     updaterow: function (rowid, rowdata, commit) {
 

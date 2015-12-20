@@ -12,7 +12,8 @@ var MetronicApp = angular.module("MetronicApp", [
     "fcsa-number"
 ]);
 
-MetronicApp.constant('DREAM_FACTORY_URL', 'https://sgproject001.bit-clicks.com');
+//MetronicApp.constant('DREAM_FACTORY_URL', 'https://sgproject001.bit-clicks.com/rest/qiandev');
+MetronicApp.constant('DREAM_FACTORY_URL', 'https://sgproject001.bit-clicks.com/rest/qian');
 
 /* Configure ocLazyLoader(refer: https://github.com/ocombe/ocLazyLoad) */
 MetronicApp.config(['$ocLazyLoadProvider', function($ocLazyLoadProvider) {
@@ -191,6 +192,22 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
             templateUrl: "./views/transaksi/transaksi.html",
             data: {pageTitle: 'Transaksi', pageSubTitle: 'Jual / Beli Uang Asing'},
             controller: "transaksiController",
+            controllerAs: 'vm'
+
+        })
+        .state('home.rstok', {
+            url: "/rstok",
+            templateUrl: "./views/r_stok/rstok.html",
+            data: {pageTitle: 'Laporan Stok', pageSubTitle: 'barang yang tersedia'},
+            controller: "rstokController",
+            controllerAs: 'vm'
+
+        })
+        .state('home.nasabah', {
+            url: "/nasabah",
+            templateUrl: "./views/nasabah/nasabah.html",
+            data: {pageTitle: 'Daftar Nasabah', pageSubTitle: 'Individu dan Perseroan'},
+            controller: "nasabahController",
             controllerAs: 'vm'
 
         })

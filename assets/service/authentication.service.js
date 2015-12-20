@@ -22,7 +22,7 @@
 
             var request = $http({
                 method: 'POST',
-                url: DREAM_FACTORY_URL + '/rest/qian/_func/fetchBottle',
+                url: DREAM_FACTORY_URL + '/_func/fetchBottle',
                 headers: {
                     'X-DreamFactory-Application-Name': "myapp"
                 },
