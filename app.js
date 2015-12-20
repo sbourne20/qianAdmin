@@ -12,8 +12,8 @@ var MetronicApp = angular.module("MetronicApp", [
     "fcsa-number"
 ]);
 
-//MetronicApp.constant('DREAM_FACTORY_URL', 'https://sgproject001.bit-clicks.com/rest/qiandev');
-MetronicApp.constant('DREAM_FACTORY_URL', 'https://sgproject001.bit-clicks.com/rest/qian');
+MetronicApp.constant('DREAM_FACTORY_URL', 'https://sgproject001.bit-clicks.com/rest/qiandev');
+//MetronicApp.constant('DREAM_FACTORY_URL', 'https://sgproject001.bit-clicks.com/rest/qian');
 
 /* Configure ocLazyLoader(refer: https://github.com/ocombe/ocLazyLoad) */
 MetronicApp.config(['$ocLazyLoadProvider', function($ocLazyLoadProvider) {
@@ -211,9 +211,10 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
             controllerAs: 'vm'
 
         })
-        .state('test', {
+        .state('home.test', {
             url: "/test",
             templateUrl: "./views/test/test.html",
+            data: {pageTitle: 'Test', pageSubTitle: 'Test'},
             controller: "testController",
 
         })
