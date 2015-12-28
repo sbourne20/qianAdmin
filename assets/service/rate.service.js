@@ -273,7 +273,7 @@
                         {
                             "name": "nid",
                             "param_type": "IN",
-                            "value": "xa"
+                            "value": "xapecahan"
                         },
                         {
                             "name": "curid",

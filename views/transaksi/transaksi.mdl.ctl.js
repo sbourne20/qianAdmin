@@ -399,7 +399,7 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
             setTimeout(function () {
                 transaksiService.postTRXH($scope.trxh.id)
                     .then(function (result) {
-
+                    console.log (result);
                         if (result.data.record!='DONE') {
                             setTimeout(function () {
                                 $window.$scope = $scope;

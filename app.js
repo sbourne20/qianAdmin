@@ -203,6 +203,14 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
             controllerAs: 'vm'
 
         })
+        .state('home.rca' , {
+            url: "/rca",
+            templateUrl: "./views/r_dca/rca.html",
+            data: {pageTitle: 'Laporan Cost Averaging', pageSubTitle: 'minimum harga yang harus dijual'},
+            controller: "rcaController",
+            controllerAs: 'vm'
+
+        })
         .state('home.nasabah', {
             url: "/nasabah",
             templateUrl: "./views/nasabah/nasabah.html",
