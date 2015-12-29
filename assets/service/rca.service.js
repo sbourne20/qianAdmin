@@ -20,13 +20,27 @@
             {
                 datatype: "json",
                 type : "GET",
-
+                data: {
+                    "params": [
+                        {
+                            "name": "idx",
+                            "param_type": "IN",
+                            "value": "minjual"
+                        }
+                    ],
+                    "schema": {
+                        "STATUS": "varchar",
+                        "ERROR_CODE": "varchar",
+                        "MESSAGE": "varchar"
+                    },
+                    "wrapper": "record"
+                },
                 datafields: [
                     { name: 'curname' },
                     { name: 'costavg', type: 'int' },
                 ],
                 id: 'id',
-                url: DREAM_FACTORY_URL+ "/_proc/retrieveAdminRates",
+                url: DREAM_FACTORY_URL+ "/_proc/fetchDCA",
                 root: 'record',
 
             };
