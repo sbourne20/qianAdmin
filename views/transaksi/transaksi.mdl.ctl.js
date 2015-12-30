@@ -106,6 +106,7 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
         rateService.fetchTRXRate2()
             .then(function (result) {
                 $scope.TRXRate = result.data.record;
+                console.log ($scope.TRXRate);
                 JSON.stringify($scope.TRXRate);
             });
 
