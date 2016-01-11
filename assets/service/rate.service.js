@@ -16,6 +16,7 @@
         service.fetchTRXRate = fetchTRXRate;
         service.fetchTRXRateJB = fetchTRXRateJB;
         service.fetchTRXRate2 = fetchTRXRate2;
+        service.fetchTRXRate3 = fetchTRXRate3;
         //service.deleteData = deleteData;
 
         return service;
@@ -302,6 +303,46 @@
 
 
                 }).then(handleSuccessData, handleError('Error updating data'));
+
+        }
+
+        function fetchTRXRate3(){
+
+            var url = DREAM_FACTORY_URL + "/_proc/fetchRates";
+            var data = {
+                "params": [
+                    {
+                        "name": "nid",
+                        "param_type": "IN",
+                        "value": "xapecahan2"
+                    },
+                    {
+                        "name": "curid",
+                        "param_type": "IN",
+                        "value": 0
+                    }
+                ],
+                "schema": {
+                    "STATUS": "varchar",
+                    "ERROR_CODE": "varchar",
+                    "MESSAGE": "varchar"
+                },
+                "wrapper": "record"
+            };
+
+
+
+
+            return $http({
+                method: "POST",
+                url: url,
+                headers: {
+                    'X-DreamFactory-Application-Name': "myapp"
+                },
+                data: data
+
+
+            }).then(handleSuccessData, handleError('Error updating data'));
 
         }
 

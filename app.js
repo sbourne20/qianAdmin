@@ -211,6 +211,14 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
             controllerAs: 'vm'
 
         })
+        .state('home.sim' , {
+            url: "/rsim",
+            templateUrl: "./views/r_sim/rsim.html",
+            data: {pageTitle: 'Simulation', pageSubTitle: 'perhitungan futures rugi-laba'},
+            controller: "rsimController",
+            controllerAs: 'vm'
+
+        })
         .state('home.nasabah', {
             url: "/nasabah",
             templateUrl: "./views/nasabah/nasabah.html",

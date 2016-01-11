@@ -202,7 +202,7 @@
         function initData(){
 
 
-            rateService.fetchTRXRate2()
+            rateService.fetchTRXRate3()
                 .then (function(result){
                     TRXRate = result.data.record;
                 JSON.stringify(TRXRate);
