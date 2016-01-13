@@ -78,7 +78,6 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
         });
     }
 
-
     function getPecahanTRX(curid, pecahanid, data) {
         if (pecahanid==0) {
             return data.filter(function (data) {
@@ -96,7 +95,7 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
             $('#jqxgridDetil').jqxGrid('updatebounddata')
         }, 500);
 
-
+        // test;
     }
 
 
@@ -211,12 +210,12 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
                             var curid = $('#jqxgridDetil').jqxGrid('getcellvalue', row, 'trxd_currency_id');
                             var pecahanid = $('#jqxgridDetil').jqxGrid('getcellvalue', row, 'pecahanID');
                             var foundstok = getPecahanTRX(curid,pecahanid,$scope.pecahan);
-                            if ((newvalue<=foundstok[0].qty) || ($scope.trxh.trxh_tipe=="Beli")) {
+                            //if ((newvalue<=foundstok[0].qty) || ($scope.trxh.trxh_tipe=="Beli")) {
                                 var valueId = $('#jqxgridDetil').jqxGrid('getcellvalue', row, 'trxd_satuan');
                                 setTimeout(function () {
                                     $("#jqxgridDetil").jqxGrid('setcellvalue', row, "trxd_total", valueId * newvalue);
                                 }, 700);
-                            } else return false;
+                            //} else return false;
                         }},
                     //{ text: 'Total', dataField: 'trxd_total', width: 150, editable:false, cellsformat: 'd', cellsalign: 'right',aggregates: ['sum'] },
                     { text: 'Total', dataField: 'trxd_total', width: 150, editable:false, cellsformat: 'd', cellsalign: 'right',
