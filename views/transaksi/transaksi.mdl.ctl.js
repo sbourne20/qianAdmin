@@ -115,6 +115,7 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
                 JSON.stringify($scope.pecahan);
             });
 
+        console.log ($scope.pecahan);
         $("#jqxgridDetil").jqxGrid(
             {
                 width: "100%",
@@ -170,7 +171,7 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
                                 { name: 'id' },
                                 { name: 'pecahan_id' },
                                 { name: 'qty' },
-                                { name: 'pecahan', type: 'INT' },
+                                { name: 'pecahan'},
                                 { name: 'curname' }
 
                             ],
