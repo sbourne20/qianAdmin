@@ -105,7 +105,7 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
         rateService.fetchTRXRate2()
             .then(function (result) {
                 $scope.TRXRate = result.data.record;
-                console.log ($scope.TRXRate);
+                //console.log ($scope.TRXRate);
                 JSON.stringify($scope.TRXRate);
             });
 
@@ -115,7 +115,7 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
                 JSON.stringify($scope.pecahan);
             });
 
-        console.log ($scope.pecahan);
+        console.log (transaksiDA);
         $("#jqxgridDetil").jqxGrid(
             {
                 width: "100%",
@@ -196,7 +196,7 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
 
                     }
                     },
-                    { text: 'Pecahan', displayfield: 'pecahan',width: 100,cellsformat: 'd', cellsalign: 'right',editable:false},
+                    { text: 'Pecahan', displayfield: 'pecahan',width: 100,cellsformat: 'f2', cellsalign: 'right',editable:false},
                     { text: 'PecahanID', hidden: 'true', displayfield: 'pecahanID',width: 100,cellsformat: 'd', cellsalign: 'right',editable:false},
                     { text: 'Harga Satuan', dataField: 'trxd_satuan', width: 100,cellsformat: 'd', cellsalign: 'right',
                         cellendedit:function (row, column, columntype, oldvalue, newvalue) {
@@ -400,7 +400,7 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
             setTimeout(function () {
                 transaksiService.postTRXH($scope.trxh.id)
                     .then(function (result) {
-                    console.log (result);
+                    //console.log (result);
                         if (result.data.record!='DONE') {
                             setTimeout(function () {
                                 $window.$scope = $scope;

@@ -395,10 +395,10 @@
                     {name: 'trxd_currency_id'},
                     {name: 'trxd_stok_id'},
                     {name: 'trxd_satuan', type: 'int'},
-                    {name: 'trxd_jumlah', type: 'int'},
+                    {name: 'trxd_jumlah', type: 'float'},
                     {name: 'trxd_total', type: 'int'},
                     {name: 'curname'},
-                    {name: 'pecahan', type: 'int'},
+                    {name: 'pecahan', type: 'float'},
                     {name: 'pecahanID', type: 'int'}
 
                 ],
