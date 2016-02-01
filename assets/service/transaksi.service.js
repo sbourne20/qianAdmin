@@ -394,7 +394,7 @@
                     {name: 'trxd_trxh_id'},
                     {name: 'trxd_currency_id'},
                     {name: 'trxd_stok_id'},
-                    {name: 'trxd_satuan', type: 'int'},
+                    {name: 'trxd_satuan', type: 'float'},
                     {name: 'trxd_jumlah', type: 'float'},
                     {name: 'trxd_total', type: 'int'},
                     {name: 'curname'},
