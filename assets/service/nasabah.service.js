@@ -217,6 +217,9 @@
                     { name: 'negara' },
                     { name: 'phone' },
                     { name: 'notes' },
+                    { name: 'beli', type: 'int' },
+                    { name: 'jual', type: 'int' },
+
 
                 ],
                 id: 'id',

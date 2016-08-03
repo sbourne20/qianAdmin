@@ -33,6 +33,8 @@
                         { text: 'ID Type', dataField: 'idtype', width: 80 },
                         { text: 'ID Nasabah', dataField: 'idnasabah', width: 80 },
                         { text: 'Nama', dataField: 'nama', width: 150 },
+                        { text: 'Beli', dataField: 'beli', width: 100, cellsformat: 'd', cellsalign: 'right' },
+                        { text: 'Jual', dataField: 'jual', width: 100, cellsformat: 'd', cellsalign: 'right' },
                         { text: 'Alamat', dataField: 'alamat', width: 200 },
                         { text: 'Negara', dataField: 'negara', width: 80 },
                         { text: 'Phone', dataField: 'phone', width: 80 },
