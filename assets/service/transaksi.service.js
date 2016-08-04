@@ -351,7 +351,7 @@
                 },
                 datafields: [
                     {name: 'id'},
-                    {name: 'trxh_code'},
+                    {name: 'trxh_code', type: 'string'},
                     {name: 'trxh_date'},
                     {name: 'trxh_tipe'},
                     {name: 'jenis'},

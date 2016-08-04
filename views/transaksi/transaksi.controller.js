@@ -46,7 +46,7 @@
                 datatype: "json",
                 datafields: [
                     {name: 'id'},
-                    {name: 'trxh_code'},
+                    {name: 'trxh_code', type:'string'},
                     {name: 'trxh_date'},
                     {name: 'trxh_tipe'},
                     {name: 'jenis'},
@@ -67,6 +67,7 @@
                     source: transaksiService.initData(0,"TRX"),
                     columnsresize: true,
                     editable: false,
+                    filterable: true,
                     selectionmode: 'singlerow',
                     columns: [
                         { text: 'Kode', dataField: 'trxh_code', width: 150 },

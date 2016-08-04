@@ -232,6 +232,8 @@
                     source: pecahanDataAdapter('all'),
                     columnsresize: true,
                     editable: true,
+                    filterable: true,
+                    sortable: true,
                     selectionmode: 'multiplecellsadvanced',
                     editmode: 'click',
                     columns: [
