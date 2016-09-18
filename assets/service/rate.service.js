@@ -414,13 +414,13 @@
                 datafields: [
                     { name: 'stamp_dt' },
                     { name: 'curname' },
-                    { name: 'price_buy', type: 'int' },
-                    { name: 'price_sell', type: 'int'},
+                    { name: 'price_buy', type: 'float' },
+                    { name: 'price_sell', type: 'float'},
                     { name: 'nid', type: 'int'},
                     { name: 'nstampdt' },
                     { name: 'stats_edit'},
-                    { name: 'nprice_buy' , type: 'int'},
-                    { name: 'nprice_sell', type: 'int'},
+                    { name: 'nprice_buy' , type: 'float'},
+                    { name: 'nprice_sell', type: 'float'},
                     { name: 'currency_id', type: 'int'},
                     { name: 'stats_edit_str'},
 
@@ -471,8 +471,8 @@
                     columns: [
                         { text: 'Mata Uang', dataField: 'curname', width: 100, editable:false },
                         { text: 'Tanggal/Jam Updt Trkhr', dataField: 'stamp_dt', width: 150, cellclassname: cellclass1, editable:false },
-                        { text: 'Jual Terakhir', dataField: 'price_sell', width: 80 , editable:false,  cellclassname: cellclass1,cellsformat: 'd', cellsalign: 'right'},
-                        { text: 'Beli Terakhir', dataField: 'price_buy', width: 80, editable:false ,  cellclassname: cellclass1,cellsformat: 'd', cellsalign: 'right'},
+                        { text: 'Jual Terakhir', dataField: 'price_sell', width: 80 , editable:false,  cellclassname: cellclass1,cellsformat: 'f', cellsalign: 'right'},
+                        { text: 'Beli Terakhir', dataField: 'price_buy', width: 80, editable:false ,  cellclassname: cellclass1,cellsformat: 'f', cellsalign: 'right'},
                         { text: 'Tanggal/Jam', dataField: 'nstampdt', width: 150, cellbeginedit : setEditableCells},
                         { text: 'Status', dataField: 'stats_edit', displayField:'stats_edit_str', width: 150, cellbeginedit : setEditableCells,
                           columntype:'combobox',
@@ -480,8 +480,8 @@
                                 editor.jqxComboBox({ source: statusAdapter, displayMember: 'label', valueMember: 'value' });
                             }
                         },
-                        { text: 'Jual', dataField: 'nprice_sell', width: 80, cellsformat: 'd', cellsalign: 'right', cellbeginedit : setEditableCells },
-                        { text: 'Beli',dataField: 'nprice_buy', width: 80, cellsformat: 'd', cellsalign: 'right', cellbeginedit : setEditableCells}
+                        { text: 'Jual', dataField: 'nprice_sell', width: 80, cellsformat: 'f', cellsalign: 'right', cellbeginedit : setEditableCells },
+                        { text: 'Beli',dataField: 'nprice_buy', width: 80, cellsformat: 'f', cellsalign: 'right', cellbeginedit : setEditableCells}
 
                     ]
                 });

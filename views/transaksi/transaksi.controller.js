@@ -54,7 +54,8 @@
                     {name: 'idnasabah'},
                     {name: 'nama'},
                     {name: 'trxh_total', type: 'int'},
-                    {name: 'trxh_stats'}
+                    { name: 'trxh_stats' },
+                    { name: 'branch_id' }
 
                 ],
                 localdata: trxhdata
@@ -86,7 +87,7 @@
             $("#jqxgrid").on("rowdoubleclick", function (event) {
                 var args = event.args;
                 var foundtrxh = getTRXH(args.row.bounddata.uid,trxhdata);
-
+                console.log(foundtrxh);
                 transaksiService.fetchNasab(foundtrxh[0].idnasabah)
                     .then (function(result){
                       var trxhnasab = result.data[0];

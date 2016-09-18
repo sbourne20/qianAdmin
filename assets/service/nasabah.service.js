@@ -209,6 +209,7 @@
                     "wrapper": "record"
                 },
                 datafields: [
+                    {name: 'id'},
                     { name: 'jenis' },
                     { name: 'idtype' },
                     { name: 'idnasabah'},

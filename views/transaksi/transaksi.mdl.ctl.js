@@ -115,7 +115,7 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
                 JSON.stringify($scope.pecahan);
             });
 
-        console.log (transaksiDA);
+        // console.log (transaksiDA);
         $("#jqxgridDetil").jqxGrid(
             {
                 width: "100%",
@@ -206,7 +206,7 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
                             }, 700);
                         }
                     },
-                    { text: 'Jumlah', dataField: 'trxd_jumlah', width: 100,cellsformat: 'd', cellsalign: 'right',
+                    { text: 'Jumlah', dataField: 'trxd_jumlah', width: 100,cellsformat: 'd2', cellsalign: 'right',
                         cellendedit:function (row, column, columntype, oldvalue, newvalue) {
                             var curid = $('#jqxgridDetil').jqxGrid('getcellvalue', row, 'trxd_currency_id');
                             var pecahanid = $('#jqxgridDetil').jqxGrid('getcellvalue', row, 'pecahanID');

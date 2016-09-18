@@ -42,14 +42,14 @@
         $scope.deleteData = function (id) {
             var selcell = $("#jqxgrid").jqxGrid('getselectedcell');
             var valueId = $('#jqxgrid').jqxGrid('getcellvalue', selcell.rowindex, 'uid');
+            
+            if (pecahanService.deleteData(valueId)) {
+                setTimeout(function () {
+                    $('#jqxgrid').jqxGrid('updatebounddata')
+                }, 500);
 
-           if (pecahanService.deleteData(valueId)) {
-               setTimeout(function() {
-                   $('#jqxgrid').jqxGrid('updatebounddata')
-               },500);
-
-
-           }
+            }
+           
         }
 
     }

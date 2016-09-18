@@ -6,7 +6,7 @@
         .controller('nasabahController', nasabahController);
 
     nasabahController.$inject = [ '$rootScope','$location','$window','$scope','nasabahService','$modal'];
-    function nasabahController( $rootScope,$location,$window,$scope,nasabahService,$modal) {
+    function nasabahController($rootScope, $location, $window, $scope, nasabahService, $modal) {
 
 
 
@@ -27,6 +27,7 @@
                     columnsresize: true,
                     filterable: true,
                     sortable: true,
+                    //selectionmode: 'singlerow',
                     selectionmode: 'singlerow',
                     columns: [
                         { text: 'Jenis', dataField: 'jenis', width: 80 },
@@ -67,7 +68,7 @@
         }
 
         $scope.refreshData = function (id) {
-                $('#jqxgrid').jqxGrid('updatebounddata');
+            $('#jqxgrid').jqxGrid('updatebounddata');
         }
 
         $scope.addData = function (id) {
@@ -84,17 +85,26 @@
 
         $scope.deleteData = function (id) {
             var selcell = $("#jqxgrid").jqxGrid('getselectedcell');
-            var valueId = $('#jqxgrid').jqxGrid('getcellvalue', selcell.rowindex, 'uid');
+           // var valueId = $('#jqxgrid').jqxGrid('getcellvalue', selcell.rowindex, 'uid');
+            console.log(selcell);
+            /*  if (pecahanService.deleteData(valueId)) {
+                  setTimeout(function() {
+                      $('#jqxgrid').jqxGrid('updatebounddata')
+                  },500);
+   
+                  */
+        }
 
-           if (pecahanService.deleteData(valueId)) {
-               setTimeout(function() {
-                   $('#jqxgrid').jqxGrid('updatebounddata')
-               },500);
+
+        $scope.printID = function (id) {
+
+            var selcell = $("#jqxgrid").jqxGrid('getselectedrowindex');
+            var valueId = $('#jqxgrid').jqxGrid('getcellvalue', selcell, 'id');
+            //console.log(valueId);
 
 
-           }
         }
 
     }
 
-})();
+    })();

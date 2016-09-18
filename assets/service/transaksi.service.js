@@ -137,7 +137,8 @@
                         "trxh_total" : trxh.trxh_total,
                         "trxh_amount" : trxh.trxh_amount,
                         "trxh_kembali" : trxh.trxh_kembali,
-                        "trxh_notes" : trxh.trxh_notes
+                        "trxh_notes": trxh.trxh_notes,
+                        "branch_id" : trxh.branch_id
 
 
                     }
@@ -360,7 +361,8 @@
                     {name: 'nama'},
                     {name: 'trxh_total', type: 'int'},
                     {name: 'trxh_stats'},
-                    {name: 'idcopy', type: 'binary'},
+                    { name: 'idcopy', type: 'binary' },
+                    {name :'branch_id'}
 
                 ],
                 id: 'id',
