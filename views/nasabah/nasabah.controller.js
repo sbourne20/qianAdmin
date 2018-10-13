@@ -53,7 +53,7 @@
                 
                 nasabahService.fetchNasab(args.row.bounddata.idnasabah)
                     .then(function (result) {
-                        
+                        console.log (result);
                         var trxhnasab = result.data[0];
                         //console.log(result);
                         var modalInstance = $modal.open({
