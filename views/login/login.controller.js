@@ -24,21 +24,19 @@
         function login() {
 
             vm.dataLoading = true;
+            AuthenticationService.Login(vm.USER_NAME, vm.PASSWORD, function(response){
+                if (response[0].success) {
+                                    AuthenticationService.SetCredentials(vm.USER_NAME, vm.PASSWORD,response[0].token);
+                                    $location.path('/home/dashboard');
+                                    //console.log(response);
 
-            AuthenticationService.Login(vm.USER_NAME, vm.PASSWORD, function (response) {
-
-                if (response.success) {
-                    AuthenticationService.SetCredentials(vm.USER_NAME, vm.PASSWORD);
-                    $location.path('/home/dashboard');
-                    //console.log ('success');
-
-                } else {
-                    //FlashService.Error(response.message);
-                    vm.dataLoading = false;
-                    vm.response = response.message;
-                    //console.log ('unsuccess'); test here
-                }
+                                } else {
+                                    vm.dataLoading = false;
+                                    vm.response = response.message;
+                                    //console.log ('unsuccess'); test here
+                                }
             });
+
         };
     }
 

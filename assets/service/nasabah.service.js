@@ -83,8 +83,8 @@
                 method: "PATCH",
                 url: url,
                 headers: {
-                    'X-DreamFactory-API-Key':"c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4"
-                   // 'X-DreamFactory-Session-Token':"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlNGE1Y2RjNzViNTQ3NzVmYzRhNDM1OWM3ODBlYzAwMyIsImlzcyI6Imh0dHBzOi8vMTkyLjE2OC44LjQ4L2FwaS92Mi9zeXN0ZW0vYWRtaW4vc2Vzc2lvbiIsImlhdCI6MTUzOTQ0NjU5MiwiZXhwIjoxNTM5NDUwMTkyLCJuYmYiOjE1Mzk0NDY1OTIsImp0aSI6IjkwSlBJUGZ0NXFNMmpQMFciLCJ1c2VyX2lkIjoxLCJmb3JldmVyIjpmYWxzZX0.YBsMx6vz6FkVx-r_soK3f65SCv4hbbVFMGeWf_i83mc"
+                    'X-DreamFactory-API-Key':"c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4",
+                    'X-DreamFactory-Session-Token':$rootScope.globals.token
                 },
                 data: data
 
@@ -101,7 +101,8 @@
                 datatype : 'json',
                 async: true,
                 headers: {                    
-                    'X-DreamFactory-API-Key':'c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4'
+                    'X-DreamFactory-API-Key':'c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4',
+                    'X-DreamFactory-Session-Token':$rootScope.globals.token
                 },
                 data : {
                     "params": [
@@ -146,7 +147,8 @@
                 method: "PATCH",
                 url: url,
                 headers: {
-                    'X-DreamFactory-API-Key':"752e4202cbee2b3626493ee452deeeefc1a791d53d9c5c01adf2d9fd222efcd3"
+                    'X-DreamFactory-API-Key':"752e4202cbee2b3626493ee452deeeefc1a791d53d9c5c01adf2d9fd222efcd3",
+                    'X-DreamFactory-Session-Token':$rootScope.globals.token
                 },
                 data: data
 
@@ -199,7 +201,8 @@
                         method: aemethod,
                         url: url,
                         headers: {
-                            'X-DreamFactory-API-Key':"c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4"
+                            'X-DreamFactory-API-Key':"c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4",
+                            'X-DreamFactory-Session-Token':$rootScope.globals.token
                         },
                         data: data
 
@@ -215,7 +218,8 @@
                         url: DREAM_FACTORY_URL + "/_proc/fetchNasabah",
                         datatype : 'json',
                         headers: {                    
-                            'X-DreamFactory-API-Key':'c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4'
+                            'X-DreamFactory-API-Key':'c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4',
+                            'X-DreamFactory-Session-Token':$rootScope.globals.token
                         },
                         data : {
                             "params": [
@@ -234,7 +238,7 @@
 
 
         function initData(){
-            
+
             var source =
             {
                 datatype: "json",
@@ -276,16 +280,18 @@
             };
 
 
-
         var dataAdapter = new $.jqx.dataAdapter(source, {
             beforeSend: function (request) {
+
                 request.setRequestHeader("X-DreamFactory-API-Key", "c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4");
 
-                
-                //autoBind : true
+
 
             }
         });
+
+
+        //console.log($rootScope.globals);
 
         return dataAdapter;
 

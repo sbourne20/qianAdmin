@@ -35,12 +35,12 @@
                             "wrapper": "data"
                         }
                     }).then(function successCallback(xx) {
-                        console.log (xx);
+                        //console.log (xx);
                     });
         }
 
         function Login(username, password, callback) {
-            var request = $http({
+            /*var request = $http({
                 method: 'POST',
                 url: DREAM_FACTORY_URL + '/_func/fetchBottle',
                 headers: {
@@ -68,55 +68,93 @@
                 }
 
 
-            });
-            
-            request.success(function (loginResult) {
-                
-                var response = { success: loginResult == "1" };
-                if (!response.success) {
+            });*/
+           /* var responsex = [
+                {name : "Success", answer : ""},
+                {name : "token", answer : ""}
+
+            ];*/
+            $http({
+                            method: 'POST',
+                            url: "https://192.168.8.48/api/v2/user/session",
+                            datatype : 'json',
+                            headers: {
+                                //'X-DreamFactory-Application-Name': "myapp"
+                                'X-DreamFactory-API-Key':"c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4"
+                            },
+                           data : {
+                                                               "email": username,
+                                                               "password": password,
+                                                               "duration": "0"
+
+                           }
+
+
+                        }).then(function successCallback(callback1) {
+                                var responsex = [
+                                                {success : "True", token : callback1.data.session_token}
+
+
+                                            ];
+                               callback (responsex);
+                   });
+
+
+            //request.success(function (loginResult) {
+
+              //  var response = { success: loginResult == "1" };
+
+
+
+                /*if (!response.success) {
                     response.message = 'Username or password is incorrect';
                 } else {
                     //console.log("test");
-                    
-                    /*$http({
+
+                    $http({
                         method: 'POST',
-                        url: DREAM_FACTORY_URL + "/_proc/fetchNasabah",
+                        url: "https://192.168.8.48/api/v2/user/session",
                         datatype : 'json',
                         headers: {                    
                             'X-DreamFactory-API-Key':'c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4'
                         },
                         data : {
-                            "params": [
-                                {
-                                    "name": "idnasab",
-                                    "param_type": "IN",
-                                    "value": "A39215276"
-                                }
-                            ],
-                            "wrapper": "data"
+                                    "email": username,
+                                    "password": password,
+                                    "duration": "0"
+
                         }
-                    }).then(function successCallback(xx) {
-                        console.log (xx);
-                    });*/
+                    }).then(function successCallback(callback1) {
+                        //response.token = "test";
+
+
+                        //console.log (callback1.data.session_token);
+                    });
                 }
-                callback(response);
-
-            });
+                //console.log(response);*/
 
 
 
-             request.error(function(err){
+
+                //callback(responsex);
+               // return responsex;
+
+            //});
+
+
+
+            /* request.error(function(err){
 
                 alert ('error');
 
-             });
+             });*/
 
 
 
         }
 
         function handleSuccess(data) {
-            console.log (data);
+            //console.log (data);
             //return data;
         }
 
@@ -127,16 +165,20 @@
         }
 
 
-        function SetCredentials(username, password) {
+        function SetCredentials(username, password, responseToken) {
             var authdata = Base64.encode(username + ':' + password);
 
             $rootScope.globals = {
                 currentUser: {
                     username: username,
-                    authdata: authdata
-                }
-            };
+                    authdata: authdata,
+                    token: responseToken
 
+                }
+
+
+            };
+              console.log($rootScope.globals);
             //$http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
             $cookieStore.put('globals', $rootScope.globals);
         }
