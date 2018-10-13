@@ -14,51 +14,14 @@ var MetronicApp = angular.module("MetronicApp", [
 
 //MetronicApp.constant('DREAM_FACTORY_URL', 'https://sgproject001.bit-clicks.com/rest/qiandev');
 //MetronicApp.constant('DREAM_FACTORY_URL', 'https://sgproject001.bit-clicks.com/rest/qian');
-MetronicApp.constant('DREAM_FACTORY_URL', 'https://arjuna.bit-clicks.com:8020/rest/qian');
+//MetronicApp.constant('DREAM_FACTORY_URL', 'https://arjuna.bit-clicks.com:8020/rest/qian');
+MetronicApp.constant('DREAM_FACTORY_URL', 'http://192.168.8.48/api/v2/qiandb');
 /* Configure ocLazyLoader(refer: https://github.com/ocombe/ocLazyLoad) */
 MetronicApp.config(['$ocLazyLoadProvider', function($ocLazyLoadProvider) {
     $ocLazyLoadProvider.config({
         cssFilesInsertBefore: 'ng_load_plugins_before' // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
     });
 }]);
-
-/********************************************
- BEGIN: BREAKING CHANGE in AngularJS v1.3.x:readyddd
- *********************************************/
-/**
- `$controller` will no longer look for controllers on `window`.
- The old behavior of looking on `window` for controllers was originally intended
- for use in examples, demos, and toy apps. We found that allowing global controller
- functions encouraged poor practices, so we resolved to disable this behavior by
- default.
-
- To migrate, register your controllers with modules rather than exposing them
- as globals:
-
- Before:
-
- ```javascript
- function MyController() {
-  // ...
-}
- ```
-
- After:
-
- ```javascript
- angular.module('myApp', []).controller('MyController', [function() {
-  // ...
-}]);
-
- Although it's not recommended, you can re-enable the old behavior like this:
-
- ```javascript
- angular.module('myModule').config(['$controllerProvider', function($controllerProvider) {
-  // this option might be handy for migrating old apps, but please don't use it
-  // in new ones!
-  $controllerProvider.allowGlobals();
-}]);
- **/
 
 //AngularJS v1.3.x workaround for old style controller declarition in HTML
 MetronicApp.config(['$controllerProvider', function($controllerProvider) {
@@ -274,7 +237,7 @@ MetronicApp.run(["$rootScope", "settings", "$state", "$location","$cookieStore",
     $rootScope.globals = $cookieStore.get('globals') || {};
     if ($rootScope.globals.currentUser) {
         $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
-
+        $http.defaults.headers.common['X-DreamFactory-API-Key'] = 'c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4';
     }
 
     $rootScope.$on('$locationChangeStart', function (event, next, current) {

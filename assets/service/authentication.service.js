@@ -9,33 +9,54 @@
     function AuthenticationService($http,$location, $cookieStore, $rootScope, $timeout,DREAM_FACTORY_URL) {
         var service = {};
 
-
-
         service.Login = Login;
         service.ClearCredentials = ClearCredentials;
         service.SetCredentials = SetCredentials;
+        service.test = test;
 
         return service;
 
+        function test(){
+            $http({
+                        method: 'POST',
+                        url: DREAM_FACTORY_URL + "/_proc/fetchNasabah",
+                        datatype : 'json',
+                        headers: {                    
+                            'X-DreamFactory-API-Key':'c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4'
+                        },
+                        data : {
+                            "params": [
+                                {
+                                    "name": "idnasab",
+                                    "param_type": "IN",
+                                    "value": "A39215276"
+                                }
+                            ],
+                            "wrapper": "data"
+                        }
+                    }).then(function successCallback(xx) {
+                        console.log (xx);
+                    });
+        }
+
         function Login(username, password, callback) {
-
-
             var request = $http({
                 method: 'POST',
                 url: DREAM_FACTORY_URL + '/_func/fetchBottle',
                 headers: {
-                    'X-DreamFactory-Application-Name': "myapp"
+                    //'X-DreamFactory-Application-Name': "myapp"
+                    'X-DreamFactory-API-Key':"c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4"
                 },
                 data: {
 
                     "params": [
                         {
-                            "name": "bottlename",
+                            "name": "botid",
                             "param_type": "IN",
                             "value": username
                         },
                         {
-                            "name": "bottlepass",
+                            "name": "botpas",
                             "param_type": "IN",
                             "value": password
                         }
@@ -44,15 +65,39 @@
                     "wrapper" : "login",
                     "returns" : "fetchBottle"
 
-                },
+                }
 
 
             });
-
+            
             request.success(function (loginResult) {
-                var response = { success: loginResult.login === "1" };
+                
+                var response = { success: loginResult == "1" };
                 if (!response.success) {
                     response.message = 'Username or password is incorrect';
+                } else {
+                    //console.log("test");
+                    
+                    /*$http({
+                        method: 'POST',
+                        url: DREAM_FACTORY_URL + "/_proc/fetchNasabah",
+                        datatype : 'json',
+                        headers: {                    
+                            'X-DreamFactory-API-Key':'c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4'
+                        },
+                        data : {
+                            "params": [
+                                {
+                                    "name": "idnasab",
+                                    "param_type": "IN",
+                                    "value": "A39215276"
+                                }
+                            ],
+                            "wrapper": "data"
+                        }
+                    }).then(function successCallback(xx) {
+                        console.log (xx);
+                    });*/
                 }
                 callback(response);
 

@@ -5,13 +5,15 @@
         .module('MetronicApp')
         .controller('nasabahController', nasabahController);
 
-    nasabahController.$inject = [ '$rootScope','$location','$window','$scope','nasabahService','$modal'];
-    function nasabahController($rootScope, $location, $window, $scope, nasabahService, $modal) {
+    nasabahController.$inject = ['$rootScope','$location','$window','$scope','nasabahService','AuthenticationService','$modal'];
+    function nasabahController($rootScope, $location, $window, $scope, nasabahService, AuthenticationService, $modal) {
 
 
 
         var vm = this;
+        vm.test = test;
 
+        
         vm.user = [];
         $scope.obj = {};
 
@@ -47,11 +49,13 @@
 
             $("#jqxgrid").on("rowdoubleclick", function (event) {
                 var args = event.args;
-
+                //nasabahService.test();
+                
                 nasabahService.fetchNasab(args.row.bounddata.idnasabah)
                     .then(function (result) {
+                        
                         var trxhnasab = result.data[0];
-                        console.log(trxhnasab);
+                        //console.log(result);
                         var modalInstance = $modal.open({
                             templateUrl: './views/nasabah/nasabah.mdl.html',
                             windowClass: 'app-modal-window',
@@ -95,13 +99,18 @@
                   */
         }
 
+        function test(){
+            vm.dataLoading = true;
+            //AuthenticationService.test();           
+            nasabahService.test();
+        }
 
         $scope.printID = function (id) {
 
             var selcell = $("#jqxgrid").jqxGrid('getselectedrowindex');
             var valueId = $('#jqxgrid').jqxGrid('getcellvalue', selcell, 'id');
-            //console.log(valueId);
-
+            
+            
 
         }
 

@@ -1,6 +1,7 @@
 function nasabahWinController($scope,$modal, $modalInstance, $window,$interval,$http, nasabahService, trxnasabah) {
     $scope.nasabah = trxnasabah;
 
+
     if (typeof $scope.nasabah.id!=="undefined") {
         $scope.nasabah.mode = 'Edit';
         showIDCopy();
