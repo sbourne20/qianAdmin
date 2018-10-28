@@ -11,6 +11,7 @@
 
 
 
+
         var vm = this;
 
         vm.user = [];
@@ -22,7 +23,7 @@
         initController();
 
         function getTRXH(trxhid, data) {
-
+            //console.log(data);
             return data.filter( function(data) {
                 return data.id == trxhid
             });
@@ -31,8 +32,9 @@
         function refreshdataCon(){
             transaksiService.fetchTRXH("TRX",0)
                 .then (function(result){
+                //console.log (result);
                 trxhdata = result.data.record;
-                //JSON.stringify (trxhdata);
+                JSON.stringify (trxhdata);
             });
 
         }
@@ -87,11 +89,11 @@
             $("#jqxgrid").on("rowdoubleclick", function (event) {
                 var args = event.args;
                 var foundtrxh = getTRXH(args.row.bounddata.uid,trxhdata);
-                console.log(foundtrxh);
+                console.log(foundtrxh[0].idnasabah);
                 transaksiService.fetchNasab(foundtrxh[0].idnasabah)
                     .then (function(result){
                       var trxhnasab = result.data[0];
-                      //console.log (trxhnasab);
+                      console.log (trxhnasab);
 
                 var modalInstance = $modal.open({
                     templateUrl: './views/transaksi/transaksi.mdl.html',

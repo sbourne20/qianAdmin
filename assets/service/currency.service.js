@@ -5,9 +5,9 @@
         .module('MetronicApp')
         .factory('currencyService', currencyService);
 
-    currencyService.$inject = ['$http','DREAM_FACTORY_URL'];
+    currencyService.$inject = ['$http','DREAM_FACTORY_URL','$rootScope'];
 
-    function currencyService($http, DREAM_FACTORY_URL) {
+    function currencyService($http, DREAM_FACTORY_URL,$rootScope) {
         var service = {};
         $http.defaults.headers.common['X-DreamFactory-Application-Name'] = 'MetronicApp'; //default header for X-DreamFactory-Application-Name
 
@@ -22,10 +22,10 @@
             var url = "";
             var data = {};
 
-            url = DREAM_FACTORY_URL + '/currency?ids='+uid;
+            url = DREAM_FACTORY_URL + '/_table/currency?ids='+uid;
             data = {
 
-                "record": [
+                "resource": [
                     {
                         "nstatus": "DELETE"
 
@@ -44,7 +44,8 @@
                 method: "PATCH",
                 url: url,
                 headers: {
-                    'X-DreamFactory-Application-Name': "myapp"
+                    'X-DreamFactory-API-Key':"c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4",
+                    'X-DreamFactory-Session-Token':$rootScope.globals.token
                 },
                 data: data
 
@@ -58,9 +59,9 @@
 
             if (rowid==0) {
 
-                url = DREAM_FACTORY_URL + '/currency';
+                url = DREAM_FACTORY_URL + '/_table/currency';
                 data = {
-                    "record": [
+                    "resource": [
                         {
                             "nstatus": "ACTIVE"
                         }
@@ -74,10 +75,10 @@
                     "wrapper": "record"
                 }
             } else {
-                url = DREAM_FACTORY_URL + '/currency?ids='+rowdata.uid;
+                url = DREAM_FACTORY_URL + '/_table/currency?ids='+rowdata.uid;
                 data = {
 
-                    "record": [
+                    "resource": [
                         {
                             "curname": rowdata.curname,
                             "description": rowdata.description
@@ -89,7 +90,7 @@
                         "ERROR_CODE": "varchar",
                         "MESSAGE": "varchar"
                     },
-                    "wrapper": "record"
+                    "wrapper": "resource"
                 };
 
             }
@@ -98,7 +99,8 @@
                 method: aemethod,
                 url: url,
                 headers: {
-                    'X-DreamFactory-Application-Name': "myapp"
+                   'X-DreamFactory-API-Key':"c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4",
+                                       'X-DreamFactory-Session-Token':$rootScope.globals.token
                 },
                 data: data
 
@@ -121,8 +123,8 @@
 
                 ],
                 id: 'id',
-                url: DREAM_FACTORY_URL+ "/currency?filter=nstatus%3D'ACTIVE'&order=curname",
-                root: 'record',
+                url: DREAM_FACTORY_URL+ "/_table/currency?filter=nstatus=ACTIVE&order=curname",
+                root: 'resource',
 
                 updaterow: function (rowid, rowdata, commit) {
                     //console.log (rowdata.uid);
@@ -130,11 +132,11 @@
                     commit(true);
                 }
             };
-
+            console.log ($rootScope.globals["currentUser"].token);
             var dataAdapter = new $.jqx.dataAdapter(source, {
                 beforeSend: function (request) {
-                    request.setRequestHeader("X-DreamFactory-Application-Name", "myapp");
-
+                    request.setRequestHeader("X-DreamFactory-API-Key", "c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4");
+                request.setRequestHeader("X-DreamFactory-Session-Token", $rootScope.globals["currentUser"].token);
 
                 }
             });

@@ -98,27 +98,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
             templateUrl: "views/dashboard.html",
             data: {pageTitle: 'Dashboard', pageSubTitle: 'statistics & reports'},
             controller: "DashboardController",
-            /*resolve: {
-                deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                    return $ocLazyLoad.load({
-                        name: 'MetronicApp',
-                        insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
-                        files: [
-                            './assets/global/plugins/morris/morris.css',
-                            './assets/admin/pages/css/tasks.css',
 
-                            './assets/global/plugins/morris/morris.min.js',
-                            './assets/global/plugins/morris/raphael-min.js',
-                            './assets/global/plugins/jquery.sparkline.min.js',
-
-                            './assets/admin/pages/scripts/index3.js',
-                            './assets/admin/pages/scripts/tasks.js',
-
-                            'js/controllers/DashboardController.js'
-                        ]
-                    });
-                }]
-            }*/
         })
 
         .state('home.currency', {

@@ -5,9 +5,9 @@
         .module('MetronicApp')
         .factory('rateService', rateService);
 
-    rateService.$inject = ['$http','DREAM_FACTORY_URL'];
+    rateService.$inject = ['$http','DREAM_FACTORY_URL','$rootScope'];
 
-    function rateService($http, DREAM_FACTORY_URL) {
+    function rateService($http, DREAM_FACTORY_URL,$rootScope) {
         var service = {};
 
         service.initData = initData;
@@ -20,40 +20,6 @@
         //service.deleteData = deleteData;
 
         return service;
-        /*
-        function deleteData(uid){
-            var url = "";
-            var data = {};
-
-            url = DREAM_FACTORY_URL + '/currency?ids='+uid;
-            data = {
-
-                "record": [
-                    {
-                        "nstatus": "DELETE"
-
-                    }
-
-                ],
-                "schema": {
-                    "STATUS": "varchar",
-                    "ERROR_CODE": "varchar",
-                    "MESSAGE": "varchar"
-                },
-                "wrapper": "record"
-            };
-
-            return  $http({
-                method: "PATCH",
-                url: url,
-                headers: {
-                    'X-DreamFactory-Application-Name': "myapp"
-                },
-                data: data
-
-
-            }).then(handleSuccess, handleError('Error updating currency'));
-        }*/
 
         function publishRate(){
             var url = "";
@@ -72,7 +38,8 @@
                 method: "POST",
                 url: url,
                 headers: {
-                    'X-DreamFactory-Application-Name': "myapp"
+                   'X-DreamFactory-API-Key':'c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4',
+                                       'X-DreamFactory-Session-Token':$rootScope.globals.token
                 },
                 data: data
 
@@ -97,11 +64,11 @@
             }
             else
             {
-                //console.log (rowdata);
-                url = DREAM_FACTORY_URL + '/rates?ids='+rowdata.nid;
+                url = DREAM_FACTORY_URL + '/_table/rates?ids='+rowdata.nid;
+
                 data = {
 
-                    "record": [
+                    "resource": [
                         {
                             "stamp_dt" : rowdata.nstampdt,
                             "stats_edit" : rowdata.stats_edit,
@@ -116,7 +83,7 @@
                         "ERROR_CODE": "varchar",
                         "MESSAGE": "varchar"
                     },
-                    "wrapper": "record"
+                    "wrapper": "resource"
                 };
 
             }
@@ -126,11 +93,10 @@
                         method: aemethod,
                         url: url,
                         headers: {
-                            'X-DreamFactory-Application-Name': "myapp"
+                            'X-DreamFactory-API-Key':'c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4',
+                            'X-DreamFactory-Session-Token':$rootScope.globals.token
                         },
                         data: data
-
-
                     }).then(handleSuccess, handleError('Error updating data'));
 
         }
@@ -183,8 +149,8 @@
 
                 var dataAdapter = new $.jqx.dataAdapter(source, {
                     beforeSend: function (request) {
-                        request.setRequestHeader("X-DreamFactory-Application-Name", "myapp");
-
+                       request.setRequestHeader("X-DreamFactory-API-Key", "c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4");
+                                         request.setRequestHeader("X-DreamFactory-Session-Token", $rootScope.globals["currentUser"].token);
 
                     }
                 });
@@ -220,7 +186,8 @@
                     method: aemethod,
                     url: url,
                     headers: {
-                        'X-DreamFactory-Application-Name': "myapp"
+                        'X-DreamFactory-API-Key':'c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4',
+                                            'X-DreamFactory-Session-Token':$rootScope.globals.token
                     },
                     data: data
 
@@ -256,7 +223,8 @@
                 method: aemethod,
                 url: url,
                 headers: {
-                    'X-DreamFactory-Application-Name': "myapp"
+                    'X-DreamFactory-API-Key':'c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4',
+                                        'X-DreamFactory-Session-Token':$rootScope.globals.token
                 },
                 data: data
 
@@ -297,7 +265,8 @@
                     method: "POST",
                     url: url,
                     headers: {
-                        'X-DreamFactory-Application-Name': "myapp"
+                        'X-DreamFactory-API-Key':'c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4',
+                                            'X-DreamFactory-Session-Token':$rootScope.globals.token
                     },
                     data: data
 
@@ -337,7 +306,8 @@
                 method: "POST",
                 url: url,
                 headers: {
-                    'X-DreamFactory-Application-Name': "myapp"
+                   'X-DreamFactory-API-Key':'c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4',
+                                       'X-DreamFactory-Session-Token':$rootScope.globals.token
                 },
                 data: data
 
@@ -377,7 +347,8 @@
                     method: "POST",
                     url: url,
                     headers: {
-                        'X-DreamFactory-Application-Name': "myapp"
+                        'X-DreamFactory-API-Key':'c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4',
+                                            'X-DreamFactory-Session-Token':$rootScope.globals.token
                     },
                     data: data
 
@@ -430,7 +401,6 @@
                 url: DREAM_FACTORY_URL+ "/_proc/retrieveAdminRates",
                 root: 'record',
                 updaterow: function (rowid, rowdata, commit) {
-                    //console.log ("haha " + rowdata.uid);
                     addedit('PATCH',rowid, rowdata);
                     commit(true);
                 }
@@ -439,9 +409,8 @@
 
             var dataAdapter = new $.jqx.dataAdapter(source, {
                 beforeSend: function (request) {
-                    request.setRequestHeader("X-DreamFactory-Application-Name", "myapp");
-
-
+                   request.setRequestHeader("X-DreamFactory-API-Key", "c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4");
+                   request.setRequestHeader("X-DreamFactory-Session-Token", $rootScope.globals["currentUser"].token);
                 }
             });
             var cellclass1 = function (row, columnfield, value) {

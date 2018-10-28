@@ -56,14 +56,15 @@
                         "ERROR_CODE": "varchar",
                         "MESSAGE": "varchar"
                     },
-                    "wrapper": "record"
+                    "wrapper": "resource"
                 };
 
             return $http({
                 method: "POST",
                 url: url,
                 headers: {
-                    'X-DreamFactory-Application-Name': "myapp"
+                    'X-DreamFactory-API-Key':"c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4",
+                                                           'X-DreamFactory-Session-Token':$rootScope.globals.token
                 },
                 data: data
 
@@ -75,14 +76,15 @@
             var url = "";
 
 
-            url = DREAM_FACTORY_URL + '/trxd/'+uid;
+            url = DREAM_FACTORY_URL + '/_table/trxd/'+uid;
 
 
             return  $http({
                 method: "DELETE",
                 url: url,
                 headers: {
-                    'X-DreamFactory-Application-Name': "myapp"
+                   'X-DreamFactory-API-Key':"c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4",
+                                                          'X-DreamFactory-Session-Token':$rootScope.globals.token
                 },
 
             }).then(handleSuccess, handleError('Error updating currency'));
@@ -112,7 +114,8 @@
                 method: "POST",
                 url: url,
                 headers: {
-                    'X-DreamFactory-Application-Name': "myapp"
+                    'X-DreamFactory-API-Key':"c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4",
+                                                           'X-DreamFactory-Session-Token':$rootScope.globals.token
                 },
                 data: data
 
@@ -121,7 +124,7 @@
         }
 
         function saveTrxh(trxh){
-            var url = DREAM_FACTORY_URL + '/trxh?ids='+trxh.id;
+            var url = DREAM_FACTORY_URL + '/_table/trxh?ids='+trxh.id;
             var x = {
                 a : "aa",
                 b : "bb"
@@ -129,7 +132,7 @@
 
             var data = {
 
-                "record": [
+                "resource": [
                     {
                         "trxh_nasab_id" :  trxh.trxh_nasab_id,
                         "trxh_date" :  trxh.trxh_date,
@@ -150,14 +153,15 @@
                     "ERROR_CODE": "varchar",
                     "MESSAGE": "varchar"
                 },
-                "wrapper": "record"
+                "wrapper": "resource"
             };
 
             return $http({
                 method: "PATCH",
                 url: url,
                 headers: {
-                    'X-DreamFactory-Application-Name': "myapp"
+                    'X-DreamFactory-API-Key':"c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4",
+                                                           'X-DreamFactory-Session-Token':$rootScope.globals.token
                 },
                 data: data
 
@@ -169,7 +173,7 @@
             var url = "";
             var data = {};
 
-            url = DREAM_FACTORY_URL + '/_proc/insertTrxhTrxd?wrapper=record',
+            url = DREAM_FACTORY_URL + '/_proc/insertTrxhTrxd?wrapper=resource',
             data = {
                 "params": [
                     {
@@ -183,14 +187,15 @@
                     "ERROR_CODE": "varchar",
                     "MESSAGE": "varchar"
                 },
-                "wrapper": "record"
+                "wrapper": "resource"
             };
 
             return $http({
                 method: "POST",
                 url: url,
                 headers: {
-                    'X-DreamFactory-Application-Name': "myapp"
+                   'X-DreamFactory-API-Key':"c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4",
+                                                          'X-DreamFactory-Session-Token':$rootScope.globals.token
                 },
                 data: data
 
@@ -206,9 +211,9 @@
 
             if (aemethod == 'POST') {
                 pMethod = "POST"
-                url = DREAM_FACTORY_URL + '/trxd'
+                url = DREAM_FACTORY_URL + '/_table/trxd'
                 data = {
-                    "record": [{
+                    "resource": [{
                         "trxd_trxh_id" : rowid,
                         "trxd_jumlah": 0
                     }
@@ -218,19 +223,19 @@
             }
             else if (aemethod == 'POSTNASAB') {
                 pMethod = "POST"
-                url = DREAM_FACTORY_URL + '/nasab'
+                url = DREAM_FACTORY_URL + '/_table/nasab'
                 data = {
-                    "record": rowdata
+                    "resource": rowdata
                 };
 
             } else
             {
 
                 pMethod = aemethod;
-                url = DREAM_FACTORY_URL + '/trxd?ids='+rowdata.uid;
+                url = DREAM_FACTORY_URL + '/_table/trxd?ids='+rowdata.uid;
                 data = {
 
-                    "record":
+                    "resource":
                         {
                             "trxd_currency_id" : rowdata.trxd_currency_id,
                             "trxd_stok_id" : rowdata.trxd_stok_id,
@@ -247,7 +252,8 @@
                         method: pMethod,
                         url: url,
                         headers: {
-                            'X-DreamFactory-Application-Name': "myapp"
+                           'X-DreamFactory-API-Key':"c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4",
+                                                                  'X-DreamFactory-Session-Token':$rootScope.globals.token
                         },
                         data: data
 
@@ -257,7 +263,7 @@
         }
 
         function postTRXH(idtrxh){
-            var url = DREAM_FACTORY_URL + "/_func/postTRX?wrapper=record";
+            var url = DREAM_FACTORY_URL + "/_func/postTRX?wrapper=resource";
             var data = {
                 "params": [
                     {
@@ -271,15 +277,16 @@
                     "ERROR_CODE": "varchar",
                     "MESSAGE": "varchar"
                 },
-                "wrapper": "record",
-                "returns": "record"
+                "wrapper": "resource",
+                "returns": "resource"
             };
 
             return $http({
                 method: "POST",
                 url: url,
                 headers: {
-                    'X-DreamFactory-Application-Name': "myapp"
+                   'X-DreamFactory-API-Key':"c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4",
+                                                          'X-DreamFactory-Session-Token':$rootScope.globals.token
                 },
                 data: data
 
@@ -289,7 +296,7 @@
 
 
         function fetchTRXH(stats,idtrxh){
-            var url = DREAM_FACTORY_URL + "/_proc/fetchTrxh?wrapper=record";
+            var url = DREAM_FACTORY_URL + "/_proc/fetchTrxh";
             var data = {
                     "params": [
                         {
@@ -315,7 +322,8 @@
                 method: "POST",
                 url: url,
                 headers: {
-                    'X-DreamFactory-Application-Name': "myapp"
+                    'X-DreamFactory-API-Key':"c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4",
+                                                           'X-DreamFactory-Session-Token':$rootScope.globals.token
                 },
                 data: data
 
@@ -348,7 +356,7 @@
                         "ERROR_CODE": "varchar",
                         "MESSAGE": "varchar"
                     },
-                    "wrapper": "record"
+                    "wrapper": "resource"
                 },
                 datafields: [
                     {name: 'id'},
@@ -366,8 +374,8 @@
 
                 ],
                 id: 'id',
-                url: DREAM_FACTORY_URL + "/_proc/fetchTrxh?wrapper=record",
-                root: 'record'
+                url: DREAM_FACTORY_URL + "/_proc/fetchTrxh?wrapper=resource",
+                root: 'resource'
             };
 
         } else {
@@ -389,7 +397,7 @@
                         "ERROR_CODE": "varchar",
                         "MESSAGE": "varchar"
                     },
-                    "wrapper": "record"
+                    "wrapper": "resource"
                 },
                 datafields: [
                     {name: 'id'},
@@ -405,8 +413,8 @@
 
                 ],
                 id: 'id',
-                url: DREAM_FACTORY_URL + "/_proc/fetchTrxd?wrapper=record",
-                root: 'record',
+                url: DREAM_FACTORY_URL + "/_proc/fetchTrxd?wrapper=resource",
+                root: 'resource',
                 updaterow: function (rowid, rowdata, commit) {
                     if (addedit('PATCH', rowid, rowdata))
                         setTimeout(function () {
@@ -423,7 +431,8 @@
         }
             var dataAdapter = new $.jqx.dataAdapter(source, {
                 beforeSend: function (request) {
-                    request.setRequestHeader("X-DreamFactory-Application-Name", "myapp");
+                    request.setRequestHeader("X-DreamFactory-API-Key", "c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4");
+                                   request.setRequestHeader("X-DreamFactory-Session-Token", $rootScope.globals["currentUser"].token);
 
 
                 }

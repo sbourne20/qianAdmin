@@ -33,7 +33,7 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
                     transaksiService.addedit('POSTNASAB', 0, $scope.nasabah)
                         .then(function (result) {
 
-                            $scope.nasabah.id = result.data.record[0].id;
+                            $scope.nasabah.id = result.data.resource[0].id;
                             $scope.disableForm = true;
                             $scope.disableButtonTRX = false;
                             $scope.trxh.nama = $scope.nasabah.nama;
@@ -47,7 +47,7 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
             transaksiService.addedit('POSTNASAB', 0, $scope.nasabah)
                 .then(function (result) {
 
-                    $scope.nasabah.id = result.data.record[0].id;
+                    $scope.nasabah.id = result.data.resource[0].id;
                     $scope.disableForm = true;
                     $scope.disableButtonTRX = false;
                     $scope.trxh.nama = $scope.nasabah.nama;
@@ -72,13 +72,14 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
     }
 
     function getRateTRX(curid, data) {
-
+        //console.log (data);
         return data.filter( function(data) {
             return data.currency_id == curid
         });
     }
 
     function getPecahanTRX(curid, pecahanid, data) {
+   // console.log (data);
         if (pecahanid==0) {
             return data.filter(function (data) {
                 return (data.currency_id == curid)
@@ -104,15 +105,16 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
         var transaksiDA = transaksiService.initData($scope.trxh.id, 0);
         rateService.fetchTRXRate2()
             .then(function (result) {
+            //console.log (result);
                 $scope.TRXRate = result.data.record;
-                //console.log ($scope.TRXRate);
+
                 JSON.stringify($scope.TRXRate);
             });
 
         stokService.fetchStok()
             .then(function (result) {
-                $scope.pecahan = result.data.record;
-                JSON.stringify($scope.pecahan);
+                $scope.pecahan = result.data.resource;
+                //JSON.stringify($scope.pecahan);
             });
 
         // console.log (transaksiDA);
@@ -221,9 +223,9 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
                     //{ text: 'Total', dataField: 'trxd_total', width: 150, editable:false, cellsformat: 'd', cellsalign: 'right',aggregates: ['sum'] },
                     { text: 'Total', dataField: 'trxd_total', width: 150, editable:false, cellsformat: 'd', cellsalign: 'right',
                         aggregates: [{ 'Total':
-                            function (aggregatedValue, currentValue, column, record) {
-                                //var total = currentValue * parseInt(record['trxd_jumlah']);
-                                var av = aggregatedValue + parseInt(record['trxd_total']);;
+                            function (aggregatedValue, currentValue, column, resource) {
+                                //var total = currentValue * parseInt(resource['trxd_jumlah']);
+                                var av = aggregatedValue + parseInt(resource['trxd_total']);;
                                 $scope.trxh.trxh_total = av;
                                 if ($scope.trxh.trxh_tipe=='Beli') {
                                     $scope.trxh.trxh_amount = av;
@@ -320,7 +322,7 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
             } else {
                 transaksiService.addtrxh_trxd($scope.nasabah.id)
                     .then(function (result) {
-                        $scope.trxh = result.data.record[0];
+                        $scope.trxh = result.data.resource[0];
                         $scope.trxh.trxh_tipe = 'Jual';
                         $scope.trxh.trxh_amount = 0;
                         $scope.trxh.trxh_kembali = 0;
@@ -401,7 +403,7 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
                 transaksiService.postTRXH($scope.trxh.id)
                     .then(function (result) {
                     //console.log (result);
-                        if (result.data.record!='DONE') {
+                        if (result.data.resource!='DONE') {
                             setTimeout(function () {
                                 $window.$scope = $scope;
                                 var

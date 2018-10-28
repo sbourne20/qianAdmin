@@ -5,9 +5,9 @@
         .module('MetronicApp')
         .factory('stokService', stokService);
 
-    stokService.$inject = ['$http','DREAM_FACTORY_URL'];
+    stokService.$inject = ['$http','DREAM_FACTORY_URL','$rootScope'];
 
-    function stokService($http, DREAM_FACTORY_URL) {
+    function stokService($http, DREAM_FACTORY_URL,$rootScope) {
         var service = {};
 
         service.initData = initData;
@@ -21,10 +21,10 @@
             var url = "";
             var data = {};
 
-            url = DREAM_FACTORY_URL + '/akun?ids='+uid;
+            url = DREAM_FACTORY_URL + '/_table/akun?ids='+uid;
             data = {
 
-                "record": [
+                "resource": [
                     {
                         "stats": "DELETE"
 
@@ -36,14 +36,15 @@
                     "ERROR_CODE": "varchar",
                     "MESSAGE": "varchar"
                 },
-                "wrapper": "record"
+                "wrapper": "resource"
             };
 
             return  $http({
                 method: "PATCH",
                 url: url,
                 headers: {
-                    'X-DreamFactory-Application-Name': "myapp"
+                   'X-DreamFactory-API-Key':"c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4",
+                   'X-DreamFactory-Session-Token':$rootScope.globals.token
                 },
                 data: data
 
@@ -58,9 +59,9 @@
 
             if (aemethod == 'POST') {
                 var data = {};
-                url = DREAM_FACTORY_URL + '/akun'
+                url = DREAM_FACTORY_URL + '/_table/akun'
                 data = {
-                    "record": [
+                    "resource": [
                         {
                             "stats":"ACTIVE"
                         }
@@ -70,10 +71,10 @@
             else
             {
 
-                url = DREAM_FACTORY_URL + '/akun?ids='+rowdata.uid;
+                url = DREAM_FACTORY_URL + '/_table/akun?ids='+rowdata.uid;
                 data = {
 
-                    "record": [
+                    "resource": [
                         {
                             "akun_code" : rowdata.akun_code,
                             "akun_group" : rowdata.akun_group,
@@ -88,7 +89,7 @@
                         "ERROR_CODE": "varchar",
                         "MESSAGE": "varchar"
                     },
-                    "wrapper": "record"
+                    "wrapper": "resource"
                 };
 
             }
@@ -98,7 +99,8 @@
                         method: aemethod,
                         url: url,
                         headers: {
-                            'X-DreamFactory-Application-Name': "myapp"
+                            'X-DreamFactory-API-Key':"c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4",
+                                                'X-DreamFactory-Session-Token':$rootScope.globals.token
                         },
                         data: data
 
@@ -126,7 +128,7 @@
                         "ERROR_CODE": "varchar",
                         "MESSAGE": "varchar"
                     },
-                    "wrapper": "record"
+                    "wrapper": "resource"
                 },
                 datafields: [
                     { name: 'id' },
@@ -139,7 +141,7 @@
                 ],
                 id: 'id',
                 url: DREAM_FACTORY_URL+ "/_proc/fetchStok",
-                root: 'record',
+                root: 'resource',
                 updaterow: function (rowid, rowdata, commit) {
 
                     //addedit('PATCH',rowid, rowdata);
@@ -149,7 +151,8 @@
             };
             var dataAdapter = new $.jqx.dataAdapter(source, {
                 beforeSend: function (request) {
-                    request.setRequestHeader("X-DreamFactory-Application-Name", "myapp");
+                     request.setRequestHeader("X-DreamFactory-API-Key", "c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4");
+                     request.setRequestHeader("X-DreamFactory-Session-Token", $rootScope.globals["currentUser"].token);
 
 
                 }
@@ -174,7 +177,7 @@
                         "ERROR_CODE": "varchar",
                         "MESSAGE": "varchar"
                     },
-                    "wrapper": "record"
+                    "wrapper": "resource"
                 };
 
 
@@ -184,7 +187,8 @@
                 method: "POST",
                 url: url,
                 headers: {
-                    'X-DreamFactory-Application-Name': "myapp"
+                   'X-DreamFactory-API-Key':"c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4",
+                                                          'X-DreamFactory-Session-Token':$rootScope.globals.token
                 },
                 data: data
 

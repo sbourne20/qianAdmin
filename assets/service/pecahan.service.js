@@ -5,9 +5,9 @@
         .module('MetronicApp')
         .factory('pecahanService', pecahanService);
 
-    pecahanService.$inject = ['$http','DREAM_FACTORY_URL', 'rateService'];
+    pecahanService.$inject = ['$http','DREAM_FACTORY_URL', 'rateService','$rootScope'];
 
-    function pecahanService($http, DREAM_FACTORY_URL,rateService) {
+    function pecahanService($http, DREAM_FACTORY_URL,rateService,$rootScope) {
         var service = {};
 
         service.initData = initData;
@@ -22,10 +22,10 @@
             var url = "";
             var data = {};
 
-            url = DREAM_FACTORY_URL + '/pecahan?ids='+uid;
+            url = DREAM_FACTORY_URL + '/_table/pecahan?ids='+uid;
             data = {
 
-                "record": [
+                "resource": [
                     {
                         "stats": "DELETE"
 
@@ -37,14 +37,15 @@
                     "ERROR_CODE": "varchar",
                     "MESSAGE": "varchar"
                 },
-                "wrapper": "record"
+                "wrapper": "resource"
             };
 
             return  $http({
                 method: "PATCH",
                 url: url,
                 headers: {
-                    'X-DreamFactory-Application-Name': "myapp"
+                    'X-DreamFactory-API-Key':"c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4",
+                                        'X-DreamFactory-Session-Token':$rootScope.globals.token
                 },
                 data: data
 
@@ -66,30 +67,27 @@
                             "ERROR_CODE": "varchar",
                             "MESSAGE": "varchar"
                         },
-                        "wrapper": "record"
+                        "wrapper": "resource"
                     };
             }
             else
             {
                 //console.log (rowdata);
-                url = DREAM_FACTORY_URL + '/pecahan?ids='+rowdata.id;
+                url = DREAM_FACTORY_URL + '/_table/pecahan?ids='+rowdata.id;
                 data = {
 
-                    "record": [
+                    "resource": [
                         {
                             "pecahan" : rowdata.pecahan,
                             "currency_id" : rowdata.currency_id
-
                         },
-
-
                     ],
                     "schema": {
                         "STATUS": "varchar",
                         "ERROR_CODE": "varchar",
                         "MESSAGE": "varchar"
                     },
-                    "wrapper": "record"
+                    "wrapper": "resource"
                 };
 
             }
@@ -99,7 +97,8 @@
                         method: aemethod,
                         url: url,
                         headers: {
-                            'X-DreamFactory-Application-Name': "myapp"
+                            'X-DreamFactory-API-Key':"c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4",
+                            'X-DreamFactory-Session-Token':$rootScope.globals.token
                         },
                         data: data
 
@@ -127,7 +126,7 @@
                             "ERROR_CODE": "varchar",
                             "MESSAGE": "varchar"
                         },
-                        "wrapper": "record"
+                        "wrapper": "resource"
                     },
                     datafields: [
                         { name: 'curname' },
@@ -138,7 +137,7 @@
                     ],
                     id: 'id',
                     url: DREAM_FACTORY_URL+ "/_proc/fetchPecahan",
-                    root: 'record',
+                    root: 'resource',
                     updaterow: function (rowid, rowdata, commit) {
 
                         addedit('PATCH',rowid, rowdata);
@@ -166,7 +165,7 @@
                             "ERROR_CODE": "varchar",
                             "MESSAGE": "varchar"
                         },
-                        "wrapper": "record"
+                        "wrapper": "resource"
                     },
                     datafields: [
                         { name: 'curname' },
@@ -177,7 +176,7 @@
                     ],
                     id: 'id',
                     url: DREAM_FACTORY_URL+ "/_proc/fetchPecahan",
-                    root: 'record',
+                    root: 'resource',
                     updaterow: function (rowid, rowdata, commit) {
 
                         addedit('PATCH',rowid, rowdata);
@@ -190,7 +189,8 @@
 
             var dataAdapter = new $.jqx.dataAdapter(source, {
                 beforeSend: function (request) {
-                    request.setRequestHeader("X-DreamFactory-Application-Name", "myapp");
+                   request.setRequestHeader("X-DreamFactory-API-Key", "c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4");
+                   request.setRequestHeader("X-DreamFactory-Session-Token", $rootScope.globals["currentUser"].token);
                 autoBind : true
 
                 }
@@ -205,9 +205,11 @@
             rateService.fetchTRXRate3()
                 .then (function(result){
                     TRXRate = result.data.record;
+
                 JSON.stringify(TRXRate);
 
             });
+
 
 
             var cellclass1 = function (row, columnfield, value) {
