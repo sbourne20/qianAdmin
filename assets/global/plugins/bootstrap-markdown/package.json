@@ -10,12 +10,16 @@
     "markdown",
     "editor"
   ],
-  "maintainers": [{
-    "name": "Taufan Aditya",
-    "web": "https://github.com/toopay"
-  }],
-  "repositories": [{
-    "type": "git",
-    "url": "https://github.com/toopay/bootstrap-markdown.git"
-  }]
+  "maintainers": [
+    {
+      "name": "Taufan Aditya",
+      "web": "https://github.com/toopay"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/toopay/bootstrap-markdown.git"
+    }
+  ]
 }
