@@ -76,7 +76,7 @@
             ];*/
             $http({
                             method: 'POST',
-                            url: "https://192.168.8.48/api/v2/user/session",
+                            url: "https://arjuna.bit-clicks.com/api/v2/user/session",
                             datatype : 'json',
                             headers: {
                                 //'X-DreamFactory-Application-Name': "myapp"
