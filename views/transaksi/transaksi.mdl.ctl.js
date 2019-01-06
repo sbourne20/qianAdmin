@@ -331,6 +331,7 @@ function transaksiWinController($scope,$modal, $modalInstance, transaksiService,
                         $scope.trxh.trxh_nasab_id = $scope.nasabah.id;
                         $scope.disableButtonTRX = true;
                         $scope.disabledTerimaSerah=false;
+                        
                         prepareDetilTransaksi();
                     });
             }

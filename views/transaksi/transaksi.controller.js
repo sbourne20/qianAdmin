@@ -54,7 +54,7 @@
                     {name: 'jenis'},
                     {name: 'idtype'},
                     {name: 'idnasabah'},
-                    {name: 'nama'},
+                    {name: 'nama', type:'string'},
                     {name: 'trxh_total', type: 'int'},
                     { name: 'trxh_stats' },
                     { name: 'branch_id' }
