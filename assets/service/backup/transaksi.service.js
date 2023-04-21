@@ -77,7 +77,7 @@
                 method: "POST",
                 url: url,
                 headers: {
-                    'X-DreamFactory-Application-Name': "myapp"
+                    'X-DreamFactory-Application-Name': "MetronicApp"
                 },
                 data: data
 

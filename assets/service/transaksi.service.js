@@ -10,7 +10,7 @@
     function transaksiService($http, DREAM_FACTORY_URL, $rootScope) {
         var service = {};
         var status_owp = false;
-        $http.defaults.headers.common['X-DreamFactory-Application-Name'] = 'MetronicApp'; //default header for X-DreamFactory-Application-Name
+        $http.defaults.headers.common['X-DreamFactory-Application-Name'] = 'myapp'; //default header for X-DreamFactory-Application-Name
 
         service.initData = initData;
         service.addedit = addedit;
@@ -63,7 +63,7 @@
                 method: "POST",
                 url: url,
                 headers: {
-                    'X-DreamFactory-API-Key':"c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4",
+                    'X-DreamFactory-API-Key':"92e51faaafbce0ef3ec0db3b29a93af5ec7a6df262dbaab524b950b702bec615",
                                                            'X-DreamFactory-Session-Token':$rootScope.globals.token
                 },
                 data: data
@@ -83,7 +83,7 @@
                 method: "DELETE",
                 url: url,
                 headers: {
-                   'X-DreamFactory-API-Key':"c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4",
+                   'X-DreamFactory-API-Key':"92e51faaafbce0ef3ec0db3b29a93af5ec7a6df262dbaab524b950b702bec615",
                                                           'X-DreamFactory-Session-Token':$rootScope.globals.token
                 },
 
@@ -114,7 +114,7 @@
                 method: "POST",
                 url: url,
                 headers: {
-                    'X-DreamFactory-API-Key':"c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4",
+                    'X-DreamFactory-API-Key':"92e51faaafbce0ef3ec0db3b29a93af5ec7a6df262dbaab524b950b702bec615",
                                                            'X-DreamFactory-Session-Token':$rootScope.globals.token
                 },
                 data: data
@@ -160,7 +160,7 @@
                 method: "PATCH",
                 url: url,
                 headers: {
-                    'X-DreamFactory-API-Key':"c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4",
+                    'X-DreamFactory-API-Key':"92e51faaafbce0ef3ec0db3b29a93af5ec7a6df262dbaab524b950b702bec615",
                                                            'X-DreamFactory-Session-Token':$rootScope.globals.token
                 },
                 data: data
@@ -194,7 +194,7 @@
                 method: "POST",
                 url: url,
                 headers: {
-                   'X-DreamFactory-API-Key':"c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4",
+                   'X-DreamFactory-API-Key':"92e51faaafbce0ef3ec0db3b29a93af5ec7a6df262dbaab524b950b702bec615",
                                                           'X-DreamFactory-Session-Token':$rootScope.globals.token
                 },
                 data: data
@@ -252,7 +252,7 @@
                         method: pMethod,
                         url: url,
                         headers: {
-                           'X-DreamFactory-API-Key':"c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4",
+                           'X-DreamFactory-API-Key':"92e51faaafbce0ef3ec0db3b29a93af5ec7a6df262dbaab524b950b702bec615",
                                                                   'X-DreamFactory-Session-Token':$rootScope.globals.token
                         },
                         data: data
@@ -285,7 +285,7 @@
                 method: "POST",
                 url: url,
                 headers: {
-                   'X-DreamFactory-API-Key':"c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4",
+                   'X-DreamFactory-API-Key':"92e51faaafbce0ef3ec0db3b29a93af5ec7a6df262dbaab524b950b702bec615",
                                                           'X-DreamFactory-Session-Token':$rootScope.globals.token
                 },
                 data: data
@@ -322,7 +322,7 @@
                 method: "POST",
                 url: url,
                 headers: {
-                    'X-DreamFactory-API-Key':"c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4",
+                    'X-DreamFactory-API-Key':"92e51faaafbce0ef3ec0db3b29a93af5ec7a6df262dbaab524b950b702bec615",
                                                            'X-DreamFactory-Session-Token':$rootScope.globals.token
                 },
                 data: data
@@ -431,7 +431,7 @@
         }
             var dataAdapter = new $.jqx.dataAdapter(source, {
                 beforeSend: function (request) {
-                    request.setRequestHeader("X-DreamFactory-API-Key", "c44b6fd31135e76ee2cdfbf5cfb95d63152a89952af9fe697d9b7e72a556f7c4");
+                    request.setRequestHeader("X-DreamFactory-API-Key", "92e51faaafbce0ef3ec0db3b29a93af5ec7a6df262dbaab524b950b702bec615");
                                    request.setRequestHeader("X-DreamFactory-Session-Token", $rootScope.globals["currentUser"].token);
 
 
