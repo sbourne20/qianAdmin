@@ -16,7 +16,7 @@ var MetronicApp = angular.module("MetronicApp", [
 //MetronicApp.constant('DREAM_FACTORY_URL', 'https://sgproject001.bit-clicks.com/rest/qian');
 //MetronicApp.constant('DREAM_FACTORY_URL', 'https://arjuna.bit-clicks.com:8020/rest/qian');
 //MetronicApp.constant('DREAM_FACTORY_URL', 'https://192.168.8.48/api/v2/qiandb');
-MetronicApp.constant('DREAM_FACTORY_URL', 'https://arjuna.bit-clicks.com/api/v2/qiandb');
+MetronicApp.constant('DREAM_FACTORY_URL', 'https://arjuna.homeeahvalas.co.id/api/v2/qiandb');
 /* Configure ocLazyLoader(refer: https://github.com/ocombe/ocLazyLoad) */
 MetronicApp.config(['$ocLazyLoadProvider', function($ocLazyLoadProvider) {
     $ocLazyLoadProvider.config({
