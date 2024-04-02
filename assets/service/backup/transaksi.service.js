@@ -9,7 +9,7 @@
 
     function transaksiService($http, DREAM_FACTORY_URL) {
         var service = {};
-        $http.defaults.headers.common['X-DreamFactory-Application-Name'] = 'MetronicApp'; //default header for X-DreamFactory-Application-Name
+        //$http.defaults.headers.common['X-DreamFactory-Application-Name'] = 'MetronicApp'; //default header for X-DreamFactory-Application-Name
 
         service.initData = initData;
         service.addedit = addedit;
@@ -45,7 +45,7 @@
                 method: "PATCH",
                 url: url,
                 headers: {
-                    'X-DreamFactory-Application-Name': "myapp"
+                 //   'X-DreamFactory-Application-Name': "myapp"
                 },
                 data: data
 
@@ -77,7 +77,7 @@
                 method: "POST",
                 url: url,
                 headers: {
-                    'X-DreamFactory-Application-Name': "MetronicApp"
+                 //   'X-DreamFactory-Application-Name': "MetronicApp"
                 },
                 data: data
 
@@ -110,7 +110,7 @@
                 method: "POST",
                 url: url,
                 headers: {
-                    'X-DreamFactory-Application-Name': "myapp"
+                  //  'X-DreamFactory-Application-Name': "myapp"
                 },
                 data: data
 
@@ -164,7 +164,7 @@
                         method: pMethod,
                         url: url,
                         headers: {
-                            'X-DreamFactory-Application-Name': "myapp"
+                           // 'X-DreamFactory-Application-Name': "myapp"
                         },
                         data: data
 
@@ -223,7 +223,7 @@
 
             var dataAdapter = new $.jqx.dataAdapter(source, {
                 beforeSend: function (request) {
-                    request.setRequestHeader("X-DreamFactory-Application-Name", "myapp");
+                    //request.setRequestHeader("X-DreamFactory-Application-Name", "myapp");
 
 
                 }

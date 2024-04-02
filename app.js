@@ -219,7 +219,7 @@ MetronicApp.run(["$rootScope", "settings", "$state", "$location","$cookieStore",
     $rootScope.globals = $cookieStore.get('globals') || {};
     if ($rootScope.globals.currentUser) {
         $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
-        $http.defaults.headers.common['X-DreamFactory-API-Key'] = '5338c1dff5dcf11a64a01b6dccdc8cd5b8c5bc625070e3029574e51fd845ded8';
+        $http.defaults.headers.common['X-DreamFactory-API-Key'] = '3c18400b8622ef7b1e31279152f87c535e7465e2740f373ae7f1611523e12a4d';
     }
 
     $rootScope.$on('$locationChangeStart', function (event, next, current) {

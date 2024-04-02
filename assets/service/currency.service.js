@@ -9,7 +9,7 @@
 
     function currencyService($http, DREAM_FACTORY_URL,$rootScope) {
         var service = {};
-        $http.defaults.headers.common['X-DreamFactory-Application-Name'] = 'MetronicApp'; //default header for X-DreamFactory-Application-Name
+        //$http.defaults.headers.common['X-DreamFactory-Application-Name'] = 'MetronicApp'; //default header for X-DreamFactory-Application-Name
 
         service.initDataCurrency = initDataCurrency;
         service.addedit = addedit;
@@ -44,7 +44,7 @@
                 method: "PATCH",
                 url: url,
                 headers: {
-                    'X-DreamFactory-API-Key':"5338c1dff5dcf11a64a01b6dccdc8cd5b8c5bc625070e3029574e51fd845ded8",
+                    'X-DreamFactory-API-Key':"3c18400b8622ef7b1e31279152f87c535e7465e2740f373ae7f1611523e12a4d",
                     'X-DreamFactory-Session-Token':$rootScope.globals.token
                 },
                 data: data
@@ -99,7 +99,7 @@
                 method: aemethod,
                 url: url,
                 headers: {
-                   'X-DreamFactory-API-Key':"5338c1dff5dcf11a64a01b6dccdc8cd5b8c5bc625070e3029574e51fd845ded8",
+                   'X-DreamFactory-API-Key':"3c18400b8622ef7b1e31279152f87c535e7465e2740f373ae7f1611523e12a4d",
                                        'X-DreamFactory-Session-Token':$rootScope.globals.token
                 },
                 data: data
@@ -135,7 +135,7 @@
             console.log ($rootScope.globals["currentUser"].token);
             var dataAdapter = new $.jqx.dataAdapter(source, {
                 beforeSend: function (request) {
-                    request.setRequestHeader("X-DreamFactory-API-Key", "b38968d987a2269f093110f2e496b0a2caf5e794dd7ea53a4715b2d94f58007a");
+                    request.setRequestHeader("X-DreamFactory-API-Key", "3c18400b8622ef7b1e31279152f87c535e7465e2740f373ae7f1611523e12a4d");
                 request.setRequestHeader("X-DreamFactory-Session-Token", $rootScope.globals["currentUser"].token);
 
                 }
