@@ -43,7 +43,7 @@
                 method: "PATCH",
                 url: url,
                 headers: {
-                   'X-DreamFactory-API-Key':"92e51faaafbce0ef3ec0db3b29a93af5ec7a6df262dbaab524b950b702bec615",
+                   'X-DreamFactory-API-Key':"5338c1dff5dcf11a64a01b6dccdc8cd5b8c5bc625070e3029574e51fd845ded8",
                    'X-DreamFactory-Session-Token':$rootScope.globals.token
                 },
                 data: data
@@ -99,7 +99,7 @@
                         method: aemethod,
                         url: url,
                         headers: {
-                            'X-DreamFactory-API-Key':"92e51faaafbce0ef3ec0db3b29a93af5ec7a6df262dbaab524b950b702bec615",
+                            'X-DreamFactory-API-Key':"5338c1dff5dcf11a64a01b6dccdc8cd5b8c5bc625070e3029574e51fd845ded8",
                                                 'X-DreamFactory-Session-Token':$rootScope.globals.token
                         },
                         data: data
@@ -151,7 +151,7 @@
             };
             var dataAdapter = new $.jqx.dataAdapter(source, {
                 beforeSend: function (request) {
-                     request.setRequestHeader("X-DreamFactory-API-Key", "92e51faaafbce0ef3ec0db3b29a93af5ec7a6df262dbaab524b950b702bec615");
+                     request.setRequestHeader("X-DreamFactory-API-Key", "5338c1dff5dcf11a64a01b6dccdc8cd5b8c5bc625070e3029574e51fd845ded8");
                      request.setRequestHeader("X-DreamFactory-Session-Token", $rootScope.globals["currentUser"].token);
 
 
@@ -187,7 +187,7 @@
                 method: "POST",
                 url: url,
                 headers: {
-                   'X-DreamFactory-API-Key':"92e51faaafbce0ef3ec0db3b29a93af5ec7a6df262dbaab524b950b702bec615",
+                   'X-DreamFactory-API-Key':"5338c1dff5dcf11a64a01b6dccdc8cd5b8c5bc625070e3029574e51fd845ded8",
                                                           'X-DreamFactory-Session-Token':$rootScope.globals.token
                 },
                 data: data

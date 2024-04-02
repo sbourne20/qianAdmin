@@ -16,8 +16,8 @@ var MetronicApp = angular.module("MetronicApp", [
 //MetronicApp.constant('DREAM_FACTORY_URL', 'https://sgproject001.bit-clicks.com/rest/qian');
 //MetronicApp.constant('DREAM_FACTORY_URL', 'https://arjuna.bit-clicks.com:8020/rest/qian');
 //MetronicApp.constant('DREAM_FACTORY_URL', 'https://192.168.8.48/api/v2/qiandb');
-//MetronicApp.constant('DREAM_FACTORY_URL', 'https://arjuna.homeeahvalas.co.id/api/v2/qiandb');
-MetronicApp.constant('DREAM_FACTORY_URL', 'http://192.168.8.29:30001/api/v2/qiandb');
+MetronicApp.constant('DREAM_FACTORY_URL', 'https://arjuna.homeeahvalas.co.id/api/v2/qiandb');
+//MetronicApp.constant('DREAM_FACTORY_URL', 'http://192.168.8.29:30001/api/v2/qiandb');
 /* Configure ocLazyLoader(refer: https://github.com/ocombe/ocLazyLoad) */
 MetronicApp.config(['$ocLazyLoadProvider', function($ocLazyLoadProvider) {
     $ocLazyLoadProvider.config({
@@ -219,7 +219,7 @@ MetronicApp.run(["$rootScope", "settings", "$state", "$location","$cookieStore",
     $rootScope.globals = $cookieStore.get('globals') || {};
     if ($rootScope.globals.currentUser) {
         $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
-        $http.defaults.headers.common['X-DreamFactory-API-Key'] = 'b38968d987a2269f093110f2e496b0a2caf5e794dd7ea53a4715b2d94f58007a';
+        $http.defaults.headers.common['X-DreamFactory-API-Key'] = '5338c1dff5dcf11a64a01b6dccdc8cd5b8c5bc625070e3029574e51fd845ded8';
     }
 
     $rootScope.$on('$locationChangeStart', function (event, next, current) {
