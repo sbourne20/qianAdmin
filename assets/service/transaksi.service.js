@@ -357,7 +357,7 @@
                         "ERROR_CODE": "varchar",
                         "MESSAGE": "varchar"
                     },
-                    "wrapper": "resource"
+                    "wrapper": "record"
                 },
                 datafields: [
                     {name: 'id'},
@@ -398,7 +398,7 @@
                         "ERROR_CODE": "varchar",
                         "MESSAGE": "varchar"
                     },
-                    "wrapper": "resource"
+                    "wrapper": "record"
                 },
                 datafields: [
                     {name: 'id'},
