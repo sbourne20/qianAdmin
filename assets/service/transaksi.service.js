@@ -48,8 +48,6 @@
                             "param_type": "IN",
                             "value": trhid
                         }
-
-
                     ],
                     "schema": {
                         "STATUS": "varchar",
@@ -286,7 +284,7 @@
                 url: url,
                 headers: {
                    'X-DreamFactory-API-Key':"3c18400b8622ef7b1e31279152f87c535e7465e2740f373ae7f1611523e12a4d",
-                                                          'X-DreamFactory-Session-Token':$rootScope.globals.token
+                    'X-DreamFactory-Session-Token':$rootScope.globals.token
                 },
                 data: data
 
@@ -296,6 +294,7 @@
 
 
         function fetchTRXH(stats,idtrxh){
+			console.log($rootScope.globals.token);
             var url = DREAM_FACTORY_URL + "/_proc/fetchTrxh";
             var data = {
                     "params": [
