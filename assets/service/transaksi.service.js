@@ -295,7 +295,7 @@
 
         function fetchTRXH(stats,idtrxh){
 			console.log($rootScope.globals.token);
-            var url = DREAM_FACTORY_URL + "/_proc/fetchTrxh";
+            var url = DREAM_FACTORY_URL + "/_proc/fetchTrxh?wrapper=resource";
             var data = {
                     "params": [
                         {
@@ -314,7 +314,7 @@
                         "ERROR_CODE": "varchar",
                         "MESSAGE": "varchar"
                     },
-                    "wrapper": "record"
+                    "wrapper": "resource"
                 };
 
             return $http({
