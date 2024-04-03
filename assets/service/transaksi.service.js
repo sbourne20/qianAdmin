@@ -10,7 +10,7 @@
     function transaksiService($http, DREAM_FACTORY_URL, $rootScope) {
         var service = {};
         var status_owp = false;
-        //$http.defaults.headers.common['X-DreamFactory-Application-Name'] = 'myapp'; //default header for X-DreamFactory-Application-Name
+        $http.defaults.headers.common['X-DreamFactory-Application-Name'] = 'myapp'; //default header for X-DreamFactory-Application-Name
 
         service.initData = initData;
         service.addedit = addedit;
