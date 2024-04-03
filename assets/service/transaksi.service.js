@@ -428,6 +428,7 @@
 
             };
         }
+		console.log($rootScope.globals["currentUser"].token);
             var dataAdapter = new $.jqx.dataAdapter(source, {
                 beforeSend: function (request) {
                     request.setRequestHeader("X-DreamFactory-API-Key", "3c18400b8622ef7b1e31279152f87c535e7465e2740f373ae7f1611523e12a4d");
