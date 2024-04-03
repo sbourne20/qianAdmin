@@ -415,7 +415,7 @@
                 ],
                 id: 'id',
                 url: DREAM_FACTORY_URL + "/_proc/fetchTrxd",
-                root: 'resource',
+                root: 'record',
                 updaterow: function (rowid, rowdata, commit) {
                     if (addedit('PATCH', rowid, rowdata))
                         setTimeout(function () {
