@@ -376,7 +376,7 @@
                 ],
                 id: 'id',
                 url: DREAM_FACTORY_URL + "/_proc/fetchTrxh",
-                root: 'resource'
+                root: 'record'
             };
 
         } else {
