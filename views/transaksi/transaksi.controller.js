@@ -23,7 +23,7 @@
         initController();
 
         function getTRXH(trxhid, data) {
-            //console.log(data);
+            console.log(data);
             return data.filter( function(data) {
                 return data.id == trxhid
             });
@@ -89,6 +89,7 @@
             $("#jqxgrid").on("rowdoubleclick", function (event) {
                 var args = event.args;
                 var foundtrxh = getTRXH(args.row.bounddata.uid,trxhdata);
+				
                 console.log(foundtrxh[0].idnasabah);
                 transaksiService.fetchNasab(foundtrxh[0].idnasabah)
                     .then (function(result){
@@ -108,17 +109,6 @@
                         }
                     }
                 });
-                    /*modalInstance.opened.then(function(){
-                       transaksiService.prepForBroadcast("test");
-
-                        $scope.$on('handleBroadcast', function() {
-                            $scope.message = transaksiService.message;
-                        });
-                        //var elem = document.getElementById("fileinput-prev");
-                        //console.log (elem);
-                    });*/
-
-
                 });
                 //console.log (args.row.bounddata.uid);
             });

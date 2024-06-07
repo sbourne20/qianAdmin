@@ -20,7 +20,7 @@
                 method: 'Get',
                 url: DREAM_FACTORY_URL + '/_table/rules?order=tanggal',
                 headers: {
-                     'X-DreamFactory-API-Key':"3c18400b8622ef7b1e31279152f87c535e7465e2740f373ae7f1611523e12a4d",
+                     'X-DreamFactory-API-Key':"036005e85349258dd2404c2b00a550f7fcc558bdb3d07fd0a39f97d78df6873d",
                      'X-DreamFactory-Session-Token':$rootScope.globals.token
                 },
                 data: {

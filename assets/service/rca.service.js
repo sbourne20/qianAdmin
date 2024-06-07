@@ -47,7 +47,7 @@
 
             var dataAdapter = new $.jqx.dataAdapter(source, {
                 beforeSend: function (request) {
-                    request.setRequestHeader("X-DreamFactory-API-Key", "3c18400b8622ef7b1e31279152f87c535e7465e2740f373ae7f1611523e12a4d");
+                    request.setRequestHeader("X-DreamFactory-API-Key", "036005e85349258dd2404c2b00a550f7fcc558bdb3d07fd0a39f97d78df6873d");
                                    request.setRequestHeader("X-DreamFactory-Session-Token", $rootScope.globals["currentUser"].token);
 
 
